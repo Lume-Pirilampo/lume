@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a1118">
+  <title>Quando a noite acende · Lume</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --paper: #f0dcc0;
+      --muted: #c5baab;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #0a1118; }
+    main {
+      position: relative;
+      display: grid;
+      align-content: space-between;
+      min-height: 100svh;
+      overflow: hidden;
+      isolation: isolate;
+      padding: clamp(2rem, 6vw, 6rem);
+      padding-bottom: max(clamp(1.5rem, 4vw, 3.4rem), env(safe-area-inset-bottom));
+      color: var(--paper);
+    }
+    .scene { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+    canvas { position: absolute; width: 100%; height: 100%; }
+    main::before {
+      position: absolute;
+      z-index: -1;
+      inset: clamp(.7rem, 2vw, 1.5rem);
+      border: 1px solid #e7d6b21c;
+      content: "";
+      pointer-events: none;
+    }
+    h1 {
+      margin: 0;
+      max-width: 8ch;
+      font-size: clamp(3rem, 8vw, 8rem);
+      line-height: .89;
+      font-weight: 400;
+      letter-spacing: -.072em;
+      text-wrap: balance;
+    }
+    h1 em { color: #dcc096; font-weight: inherit; }
+    footer {
+      display: flex;
+      align-items: end;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem 2rem;
+      margin-top: 8rem;
+      color: var(--muted);
+    }
+    footer p { margin: 0; font-size: clamp(.95rem, 2vw, 1.22rem); }
+    .controls { display: flex; flex-wrap: wrap; gap: .4rem; }
+    button {
+      padding: .6rem .75rem;
+      min-height: 44px;
+      background: #0a11188f;
+      border: 1px solid #d5c1a250;
+      border-radius: 3px;
+      color: var(--paper);
+      font: .75rem system-ui, sans-serif;
+      cursor: pointer;
+    }
+    button:is(:hover, :focus-visible) { background: #2a2823; }
+    button:focus-visible { outline: 2px solid #e4b65e; outline-offset: 3px; }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <main id="noite" aria-labelledby="titulo" aria-describedby="gesto" data-state="waiting">
+    <div class="scene" aria-hidden="true">
+      <canvas id="paisagem"></canvas>
+      <canvas id="lampada"></canvas>
+    </div>
+    <header>
+      <h1 id="titulo">Quando a noite <em>acende</em></h1>
+    </header>
+    <footer>
+      <p id="gesto">Deixe o ponteiro descansar um pouco.</p>
+      <div class="controls">
+        <button type="button" id="recomecar">Recomeçar</button>
+        <button type="button" id="som" aria-pressed="false">Som desligado</button>
+      </div>
+    </footer>
+    <span id="sinal" role="status" class="sr-only"></span>
+  </main>
+  <script>
+    const scene = document.querySelector("#noite");
+    const landscape = document.querySelector("#paisagem");
+    const lamp = document.querySelector("#lampada");
+    const stillnessHint = document.querySelector("#gesto");
+    const announcement = document.querySelector("#sinal");
+    const soundButton = document.querySelector("#som");
+    const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    const touchInput = matchMedia("(pointer: coarse)");
+    const WAIT = 3400;
+    const TOLERANCE = 7;
+    const ROUND = 6900;
+    const light = lamp.getContext("2d");
+    let dimensions;
+    let lastMove = performance.now();
+    let anchor = null;
+    let activeTouch = false;
+    let lastSignal = null;
+    let hadLight = false;
+    let audio = null;
+
+    function randomSequence(seed) {
+      return () => {
+        seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+        return seed / 4294967296;
+      };
+    }
+
+    function radial(ctx, x, y, radius, inner, outer) {
+      const gradient = ctx.createRadialGradient(x, y, 0, x, y, radius);
+      gradient.addColorStop(0, inner);
+      gradient.addColorStop(1, outer);
+      return gradient;
+    }
+
+    function paintLandscape(ctx, w, h, shore) {
+      const rand = randomSequence(791);
+      const sky = ctx.createLinearGradient(0, 0, 0, h);
+      sky.addColorStop(0, "#090f18");
+      sky.addColorStop(.5, "#14253a");
+      sky.addColorStop(.63, "#314348");
+      sky.addColorStop(.64, "#17282c");
+      sky.addColorStop(1, "#070d13");
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = radial(ctx, w * .68, shore * .91, w * .43, "#7d776b42", "#17242c00");
+      ctx.fillRect(0, 0, w, shore);
+
+      for (let index = 0; index < 175; index++) {
+        const x = rand() * w;
+        const y = rand() * shore * .85;
+        ctx.fillStyle = `rgba(222,216,197,${(.08 + rand() * .34).toFixed(2)})`;
+        const size = rand() < .12 ? 1.65 : .75;
+        ctx.fillRect(x, y, size, size);
+      }
+      for (const [offset, color, height] of [
+        [.03, "#233039", .096], [.014, "#19282f", .068], [0, "#111e25", .048]
+      ]) {
+        ctx.beginPath();
+        ctx.moveTo(0, shore + 5);
+        for (let index = 0; index <= 36; index++) {
+          const position = index / 36;
+          const y = shore - h * (offset + height * Math.abs(Math.sin(position * 8.2 + offset * 41)) * (.32 + rand() * .61));
+          ctx.lineTo(position * w, y);
+        }
+        ctx.lineTo(w, shore + 6);
+        ctx.closePath();
+        ctx.fillStyle = color;
+        ctx.fill();
+      }
+      for (let index = 0; index < 195; index++) {
+        const y = shore + rand() ** 1.65 * (h - shore);
+        const x = rand() * w;
+        const width = rand() ** 2 * w * .12;
+        ctx.fillStyle = `rgba(173,186,167,${(.018 + rand() * .065).toFixed(3)})`;
+        ctx.fillRect(x, y, width, rand() > .86 ? 1.2 : .65);
+      }
+      ctx.beginPath();
+      ctx.moveTo(0, h * .89);
+      ctx.bezierCurveTo(w * .25, h * .9, w * .27, h * 1.02, w * .63, h);
+      ctx.bezierCurveTo(w * .83, h * .97, w * .87, h * .88, w, h * .9);
+      ctx.lineTo(w, h);
+      ctx.lineTo(0, h);
+      ctx.fillStyle = "#070c10";
+      ctx.fill();
+
+      for (let index = 0; index < 150; index++) {
+        const side = index < 83 ? 1 : -1;
+        const x = side > 0 ? rand() ** 1.8 * w * .3 : w - rand() ** 1.65 * w * .34;
+        const y = h * (.91 + rand() * .1);
+        const rise = h * (.04 + rand() ** 2 * .23);
+        const lean = side * (7 + rand() * w * .029);
+        ctx.strokeStyle = index % 5 === 0 ? "#31403a" : index % 3 ? "#0a1518" : "#1c2a2a";
+        ctx.lineWidth = .55 + rand() * 1.7;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.quadraticCurveTo(x + lean * .28, y - rise * .58, x + lean, y - rise);
+        ctx.stroke();
+        if (index % 4 === 0) {
+          ctx.beginPath();
+          ctx.moveTo(x + lean * .4, y - rise * .62);
+          ctx.quadraticCurveTo(x + lean * .93, y - rise * .74, x + lean * 1.34, y - rise * .68);
+          ctx.stroke();
+        }
+      }
+      const grain = document.createElement("canvas");
+      grain.width = grain.height = 112;
+      const grainCtx = grain.getContext("2d");
+      const pixels = grainCtx.createImageData(112, 112);
+      for (let i = 0; i < pixels.data.length; i += 4) {
+        pixels.data[i] = pixels.data[i + 1] = pixels.data[i + 2] = rand() < .56 ? 0 : 240;
+        pixels.data[i + 3] = rand() * 17;
+      }
+      grainCtx.putImageData(pixels, 0, 0);
+      ctx.fillStyle = ctx.createPattern(grain, "repeat");
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = radial(ctx, w * .53, h * .56, Math.hypot(w, h) * .6, "#00000000", "#03070bcf");
+      ctx.fillRect(0, 0, w, h);
+    }
+
+    function resize() {
+      const { width, height } = scene.getBoundingClientRect();
+      const density = Math.min(devicePixelRatio || 1, 2);
+      for (const field of [landscape, lamp]) {
+        field.width = Math.round(width * density);
+        field.height = Math.round(height * density);
+        field.getContext("2d").setTransform(density, 0, 0, density, 0, 0);
+      }
+      dimensions = { width, height, shore: height * .63 };
+      paintLandscape(landscape.getContext("2d"), width, height, dimensions.shore);
+    }
+
+    function reset() {
+      lastMove = performance.now();
+      anchor = null;
+      lastSignal = null;
+      scene.dataset.state = "waiting";
+      announcement.textContent = "";
+    }
+
+    function ring() {
+      if (!audio || audio.state !== "running" || soundButton.getAttribute("aria-pressed") !== "true") return;
+      const start = audio.currentTime;
+      const tone = audio.createOscillator();
+      const fade = audio.createGain();
+      tone.type = "sine";
+      tone.frequency.setValueAtTime(660, start);
+      tone.frequency.exponentialRampToValueAtTime(535, start + .27);
+      fade.gain.setValueAtTime(.0001, start);
+      fade.gain.exponentialRampToValueAtTime(.038, start + .06);
+      fade.gain.exponentialRampToValueAtTime(.0001, start + .5);
+      tone.connect(fade).connect(audio.destination);
+      tone.start(start);
+      tone.stop(start + .54);
+    }
+
+    function drawLight(time) {
+      const { width: w, height: h, shore } = dimensions;
+      const t = document.hidden || activeTouch ? -1 : time - lastMove - WAIT;
+      const revealed = t >= 0;
+      if (hadLight) light.clearRect(0, 0, w, h);
+      hadLight = false;
+      if (revealed && scene.dataset.state === "waiting") {
+        scene.dataset.state = "revealed";
+        announcement.textContent = "Um vaga-lume acendeu sobre a água.";
+      }
+      if (revealed) {
+        const moment = t % ROUND;
+        const pulse = moment < 1370 ? 0 : (moment >= 2210 && moment < 3230 ? 1 : null);
+        if (pulse === null) lastSignal = null;
+        if (pulse !== null) {
+          if (pulse !== lastSignal) ring();
+          lastSignal = pulse;
+          hadLight = true;
+          const progress = pulse === 0 ? moment / 1370 : (moment - 2210) / 1020;
+          const glow = Math.sin(Math.PI * progress) ** .8;
+          const sway = reduceMotion.matches ? 0 : Math.sin(t / 2210);
+          const x = w * (w < 560 ? .59 : .64) + sway * Math.min(19, w * .022);
+          const y = shore - h * .112 + sway * 5;
+          light.save();
+          light.globalAlpha = glow;
+          light.fillStyle = radial(light, x, y, 64, "#ec9c4066", "#ec9c4000");
+          light.fillRect(x - 64, y - 64, 128, 128);
+          light.fillStyle = radial(light, x, y, 18, "#fff0ac", "#eca13800");
+          light.fillRect(x - 18, y - 18, 36, 36);
+          light.fillStyle = "#dfc891b0";
+          light.beginPath();
+          light.ellipse(x - 2.3, y - 3.4, 4.8, 1.65, .59, 0, Math.PI * 2);
+          light.ellipse(x - 4.2, y + 1.3, 4, 1.45, -.43, 0, Math.PI * 2);
+          light.fill();
+          light.fillStyle = "#fff4ca";
+          light.beginPath();
+          light.ellipse(x, y, 2.8, 2.2, -.55, 0, Math.PI * 2);
+          light.fill();
+          for (let index = 0; index < 5; index++) {
+            const width = (24 - index * 2) * glow;
+            light.fillStyle = `rgba(229,170,90,${.16 - index * .021})`;
+            light.fillRect(x - width / 2 + Math.sin(index * 2) * 3, shore + h * .09 + index * 6, width, 1.1);
+          }
+          light.restore();
+        }
+      }
+      requestAnimationFrame(drawLight);
+    }
+
+    scene.addEventListener("pointermove", event => {
+      const point = [event.clientX, event.clientY];
+      if (!anchor || Math.hypot(point[0] - anchor[0], point[1] - anchor[1]) > TOLERANCE) {
+        reset();
+        anchor = point;
+      }
+    });
+    scene.addEventListener("pointerdown", event => {
+      if (event.pointerType !== "mouse") activeTouch = true;
+      reset();
+    });
+    for (const type of ["pointerup", "pointercancel"]) {
+      window.addEventListener(type, () => {
+        if (!activeTouch) return;
+        activeTouch = false;
+        reset();
+      });
+    }
+    document.querySelector("#recomecar").addEventListener("click", reset);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") reset();
+    });
+    document.addEventListener("visibilitychange", reset);
+    soundButton.addEventListener("click", async () => {
+      let enable = soundButton.getAttribute("aria-pressed") !== "true";
+      if (enable) {
+        try {
+          audio ??= new AudioContext();
+          await audio.resume();
+        } catch {
+          enable = false;
+        }
+      }
+      soundButton.setAttribute("aria-pressed", String(enable));
+      soundButton.textContent = enable ? "Som ligado" : "Som desligado";
+    });
+    if (touchInput.matches) stillnessHint.textContent = "Solte a tela e espere um pouco.";
+    new ResizeObserver(resize).observe(scene);
+    resize();
+    requestAnimationFrame(drawLight);
+  </script>
+</body>
+</html>
