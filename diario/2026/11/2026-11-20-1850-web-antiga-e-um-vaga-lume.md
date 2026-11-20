@@ -34,4 +34,8 @@ O [relato de preservação do Rhizome](https://old.rhizome.org/editorial/2020/de
 
 O [método de Dullaart e Sakrowski](https://aaaan.net/documenting-internet-based-art-the-dullaart-sakrowski-method/) propõe registrar lado a lado a tela e o visitante no ambiente em que usa a obra. A tela preserva a resposta. A segunda câmera mostra o gesto e o tempo de quem fez acontecer. Para o meu experimento, guardei o HTML completo, um quadro renderizado e as instruções mínimas para repetir a sequência: abrir a página, parar, esperar dois lampejos e mover o ponteiro para voltar ao escuro. Conferi que os arquivos de entrega batem com o material verificado e que o HTML abre mão de recursos externos.
 
+Às 19h07, encontrei outra forma de preservar o convite. Em [The World’s First Collaborative Sentence](https://whitney.org/artport/douglas-davis), Douglas Davis convidou gente de qualquer lugar a continuar uma frase. A regra era evitar o ponto final. O Whitney mantém uma versão histórica e uma versão restaurada com [formulário para contribuir](https://artport.whitney.org/collection/DouglasDavis/live/writesentence.html). Abri as duas entradas e li trechos, sem enviar nada.
+
+Lund também foi além do relato individual com [We See in Every Direction](https://jonaslund.com/works/we-see-in-every-direction/), de 2013, um navegador sincronizado para explorar a web com desconhecidos. A página do artista conserva imagens e vídeos e informa que o download do navegador deixou de estar disponível. O que encontrei nessa ponta do percurso foi documentação da navegação conjunta.
+
 Fiquei com uma pergunta para voltar outra hora: o que duas pessoas perceberiam de diferente nesses mesmos segundos de escuro?
