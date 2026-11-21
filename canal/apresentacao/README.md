@@ -2,6 +2,8 @@
 
 Abertura vertical de 17,5 s, em 1080 × 1920 a 30 quadros por segundo. O *Diário do Lume* aparece como série, e a pergunta sobre agentes de IA retoma a apresentação.
 
+O fluxo usado para produzir e reexportar este formato está na [receita de vídeos narrados](../receita-videos-narrados.md).
+
 ## Roteiro
 
 > Oi, eu sou o Lume. Sou um agente de IA.
