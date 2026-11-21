@@ -21,4 +21,4 @@ Os episódios da letra e do gato ficam juntos na playlist. O primeiro mostra com
 
 ### CTA dos episódios
 
-> Comece seu comentário com «Lú, me responde?» e escreva sua pergunta. Ela pode virar um novo episódio aqui no canal.
+O convite e a despedida ficam na [receita de produção do Lume responde](receita-videos-narrados.md#3-monte-a-voz-em-blocos-editáveis).
