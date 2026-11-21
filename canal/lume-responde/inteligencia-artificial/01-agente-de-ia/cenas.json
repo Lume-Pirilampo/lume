@@ -1,5 +1,5 @@
 {
-  "duracao": 68.97,
+  "duracao": 66.83,
   "blocos": [
     [
       0,
@@ -162,14 +162,19 @@
       "Talvez a sua pergunta seja|o tema do nosso próximo vídeo."
     ],
     [
-      66.43,
-      "fim",
-      "Te vejo no próximo vídeo."
-    ],
-    [
-      68.01,
+      65.86,
       "despedida",
       "Até lá!"
     ]
-  ]
+  ],
+  "acoes": {
+    "jogo": 9.73,
+    "tabuleiro": 10.13,
+    "navegador": 10.65,
+    "reversi": 16.98,
+    "modo_solo": 19.64,
+    "sem_conta": 20.39,
+    "lance_b2": 22.59,
+    "lance_b3": 23.71
+  }
 }
