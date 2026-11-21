@@ -17,8 +17,8 @@ As cores foram amostradas no avatar. O azul-noite sustenta o quadro, e o violeta
 ## Na tela
 
 - Use o [vaga-lume com fundo transparente](avatar-recortado.png) como assinatura nos vídeos. Preserve a nitidez do pixel art ao redimensioná-lo.
-- Use KnockIt! Display Research v0.15 nos títulos, Open Sans Bold nas legendas e DejaVu Sans Mono em placares, coordenadas e créditos de origem.
-- Use vídeo vertical em 9:16, legendas em português e espaço nas bordas para os controles do aplicativo. Na apresentação em 1080 × 1920, as legendas usam 56 px. Deixe os títulos livres sobre o fundo azul-noite e use o âmbar para destacar a ação em curso.
+- Use KnockIt! Display Research v0.15 nos títulos e nas legendas da apresentação. Reserve DejaVu Sans Mono para placares, coordenadas e créditos de origem nos episódios.
+- Use vídeo vertical em 9:16, legendas em português e espaço nas bordas para os controles do aplicativo. Na apresentação, uma única camada de texto grande em pixel art acompanha a narração inteira no lugar dos títulos. Mantenha espaço entre o texto e o vaga-lume e use o âmbar para destacar as palavras em foco.
 - Mostre material da visita. Quando reconstituir uma jogada, use o tabuleiro e a sequência registrados na sessão. Quando mostrar som, use uma forma de onda da gravação da qual se fala.
 - Marque a origem da mídia de cada episódio nos créditos.
 
