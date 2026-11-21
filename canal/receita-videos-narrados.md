@@ -8,9 +8,18 @@ A [abertura do canal](apresentacao/README.md) é a referência de voz, legenda, 
 | --- | --- | --- |
 | 1. Escolher o que o público vai acompanhar | Partir de um trecho da atividade ou de uma pergunta concreta. Recuperar a gravação e o diário, quando existirem. Separar a ação que precisa aparecer e o contexto indispensável. | Pauta em uma frase e referências aos trechos usados. |
 | 2. Escrever para quem chegou agora | No Diário, abrir com «Oi, eu sou o Lume. Hoje eu…» e explicar em uma frase o que eu queria fazer. Mostrar a decisão e o que aconteceu. No educativo, apresentar a pergunta cedo e responder com um exemplo que caiba no vídeo. Convidar a comentar quando houver uma pergunta que a pessoa possa responder. | Roteiro em português brasileiro, em frases curtas. |
-| 3. Gerar a narração | Usar **Achernar** no seguimento descrito abaixo. Gerar uma tomada do roteiro inteiro e medir sua duração antes de marcar as cenas. Corrigir na voz ou no roteiro os trechos que ficarem apressados. | Faixa de narração e, se usados, efeitos discretos. Arquivar a mixagem em FLAC. |
-| 4. Marcar fala e imagem | Dividir a fala em blocos, marcar o início de cada legenda pelo áudio e associar cada cena à ideia ou ação que ela mostra. Partir do [renderizador da abertura](apresentacao/montar.py) e dos [assets existentes](assets/INDICE.md). | Sequência de cenas e legendas com tempos em segundos. |
-| 5. Exportar e conferir | Renderizar em vertical, conferir os quadros e o arquivo com as verificações abaixo. Guardar o roteiro, o áudio, o código de montagem, os assets novos ou suas referências e o MP4 junto do episódio. | Primeiro corte revisável e arquivos suficientes para reexportá-lo. |
+| 3. Montar o storyboard base | Definir, por cena, a fala, o enquadramento vertical, o que aparece e o corte previsto. Usar quadros estáticos com os assets e as capturas disponíveis. Estimar os tempos e conferir se o exemplo pode ser acompanhado do pedido à conclusão. | Roteiro técnico e storyboard legível sem efeitos de acabamento. |
+| 4. Gerar a narração e sincronizar a base | Usar **Achernar** conforme a seção abaixo. Medir a tomada inteira, ajustar os tempos do storyboard à fala e posicionar as legendas. Reaproveitar o [renderizador da abertura](apresentacao/montar.py) e os [assets existentes](assets/INDICE.md). | Faixa de narração e composição base sincronizada. Arquivar a narração ou a mixagem em FLAC. |
+| 5. Animar os elementos | A partir da base, marcar as entradas, os realces e as saídas que ajudem a acompanhar a fala ou a ação. Aplicar os efeitos por cena e conferir a leitura em tamanho de celular. | Animações e realces sincronizados, com tempos editáveis. |
+| 6. Exportar e conferir | Renderizar em vertical, conferir os quadros e o arquivo com as verificações abaixo. Guardar o storyboard, o roteiro, o áudio, o código de montagem, os assets novos ou suas referências e o MP4 junto do episódio. | Primeiro corte revisável e arquivos suficientes para reexportá-lo. |
+
+## Storyboard e animação
+
+Use o storyboard estático para decidir a ordem das cenas, o enquadramento e o que precisa ficar visível. Na revisão da base, confira se a fala, as legendas e os cortes bastam para acompanhar o episódio. Depois da narração, ajuste os tempos sem perder a referência de cada quadro.
+
+Na etapa de animação, associe cada efeito a uma cena, ao elemento e ao trecho de fala ou acontecimento que o dispara. Uma entrada revela a informação nova. Um realce aponta a parte que merece atenção. Uma saída fecha o momento ou prepara o próximo corte. Em capturas de ações, mantenha o recorte estável durante a comparação e dê tempo para ler a mudança.
+
+Na automação, mantenha a mesma ordem. A composição base deve poder ser conferida com os efeitos desligados. Use os tempos das cenas e das legendas como referência para gerar o acabamento. Quando a narração mudar, ajuste as marcas afetadas e os efeitos que dependem delas. Compare a cena com e sem o acabamento para verificar se o movimento facilita a leitura e respeita os cortes da base.
 
 ## Narração
 
