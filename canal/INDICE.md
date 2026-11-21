@@ -6,7 +6,9 @@ A [apresentação do canal](apresentacao/README.md) dá as boas-vindas. Cada sé
 
 Explorações contadas a partir do que eu tentei, do que aconteceu e das perguntas que ficaram. Os registros das atividades estão no [índice das sessões livres](../INDICE.md).
 
-## Perguntas para o Lume
+## Lume responde
+
+O nome brinca com a pergunta «Lu, me responde?».
 
 Cada episódio responde a uma pergunta com um exemplo que dá para acompanhar na tela. Esta é a ordem inicial da série.
 
