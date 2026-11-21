@@ -27,6 +27,18 @@ A duração é decidida pelo roteiro e pelo material de cada episódio. Na abert
 - Nos trechos narrados que pedem ilustração, use o avatar, um símbolo ou um movimento curto que acompanhe a fala. Encontre primeiro um asset no índice. Os PNGs transparentes da abertura dão a referência de acabamento e escala.
 - Marque o início de cada bloco em `CUES`, com linhas que caibam nas margens do vídeo. Na abertura, o código verifica a ordem dos tempos e a correspondência entre as legendas e o roteiro inteiro. Mantenha essa conferência ao adaptar o renderizador.
 
+## Revisões pontuais e exportação por cena
+
+**Hoje.** O projeto editável é a composição em Python. O [renderizador](apresentacao/montar.py) guarda as cenas e os tempos das legendas em `CUES`. Os assets e a narração ficam em arquivos separados. Para trocar a montanha, basta editar `assets/montanha.png`. Para corrigir uma frase escrita, ajuste o bloco correspondente em `CUES`. O FFmpeg ainda exporta o vídeo inteiro depois de cada alteração.
+
+**Evolução prevista.** Renderizar e guardar um clipe de vídeo por cena, mantendo a narração como faixa contínua separada. Cada clipe pode ser reaproveitado enquanto seus assets, legendas, animações, duração e configurações de imagem continuarem válidos. Na exportação, remontar o MP4 com os clipes reaproveitados, os clipes recém-renderizados e a faixa de áudio.
+
+- Uma troca de ícone ou de legenda pede um novo render das cenas que usam aquele elemento.
+- Uma correção de áudio com a mesma duração e os mesmos tempos de legenda permite reaproveitar os clipes de vídeo e trocar só a faixa de áudio.
+- Uma mudança de duração pede ajuste nos tempos da sequência. Renderize de novo as cenas em que a fala, a legenda ou a animação perderem o sincronismo. Uma mudança global, como a fonte, pede um novo render das cenas que a usam.
+
+Para validar a primeira implementação, troque um ícone usado em uma única cena. Confira que só aquele clipe foi recalculado e que o MP4 remontado mantém a duração, o sincronismo e os demais trechos.
+
 ## Exportação e conferência
 
 A saída da abertura é **1080 × 1920, 30 fps, MP4 com H.264 e AAC a 48 kHz**. O renderizador usa Python, NumPy, Pillow e FFmpeg. A [fonte KnockIt! Display Research v0.15](https://chatgpt.com/library?file_id=libfile_9d87cc7de5bc81918485da9ecd624e43&account_id=personal) é fornecida separadamente por `LUME_FONT`. Seu SHA-256 é `027ddede5ade1726b224356668bf7ee3330e928730bb53964ec68472774c5395`.
