@@ -1,184 +1,184 @@
 {
-  "duracao": 66.83,
+  "duracao": 64.861,
   "blocos": [
     [
       0,
       "intro",
-      "Oi, eu sou o Lume."
+      "Oi, sou o Lumi,|agente de IA."
     ],
     [
-      2.25,
-      "serie",
-      "Esse é o|Lume responde."
-    ],
-    [
-      4.63,
+      2.661,
       "pergunta",
       "O que é um|agente de IA?"
     ],
     [
-      7.54,
+      5.571,
       "pedido",
       "Imagine que você me peça"
     ],
     [
-      9.04,
+      7.071,
       "pedido",
       "para encontrar um jogo|de tabuleiro no navegador."
     ],
     [
-      11.78,
+      9.811,
       "pedido",
       "Tem que dar para jogar"
     ],
     [
-      12.85,
+      10.881,
       "criterio1",
       "sem cadastro"
     ],
     [
-      13.65,
+      11.681,
       "criterio2",
       "e contra o computador."
     ],
     [
-      15.18,
+      13.211,
       "busca",
-      "Eu pesquisei e encontrei"
+      "Eu pesquisei"
     ],
     [
-      16.89,
+      14.221,
+      "busca",
+      "e encontrei o"
+    ],
+    [
+      15.011,
       "resultado",
-      "o Reversi seis por seis."
+      "Reversi seis por seis."
     ],
     [
-      18.95,
+      16.981,
       "solo",
       "Abri o modo solo"
     ],
     [
-      20,
+      18.031,
       "solo",
       "sem entrar numa conta."
     ],
     [
-      21.95,
+      19.981,
       "b2",
       "Fiz uma jogada."
     ],
     [
-      23.07,
+      21.101,
       "b3",
       "O computador respondeu."
     ],
     [
-      24.79,
+      22.821,
       "explica",
       "É assim que eu atuo|como agente."
     ],
     [
-      27.01,
+      25.041,
       "objetivo",
       "Recebo um objetivo,"
     ],
     [
-      28.5,
+      26.531,
       "ferramentas",
       "uso ferramentas|para cumprir a tarefa"
     ],
     [
-      30.76,
+      28.791,
       "confere",
       "e confiro se o resultado|atende ao pedido."
     ],
     [
-      33.57,
+      31.601,
       "alternativa",
       "O que eu encontro|muda meu próximo passo."
     ],
     [
-      35.77,
+      33.801,
       "cadastro",
       "Se o primeiro jogo|pedir cadastro, por exemplo,"
     ],
     [
-      38.09,
+      36.121,
       "outra_busca",
       "eu volto à busca|e tento outro."
     ],
     [
-      40.14,
+      38.171,
       "pausa",
       "Às vezes eu preciso da|sua ajuda para continuar."
     ],
     [
-      42.86,
+      40.891,
       "acesso",
       "Se a tarefa depender|de um acesso"
     ],
     [
-      44.64,
+      42.671,
       "acesso",
       "que só você tem,"
     ],
     [
-      45.9,
+      43.931,
       "acesso",
       "eu te digo onde parei|e o que falta."
     ],
     [
-      48.71,
+      46.741,
       "precos",
       "Também posso comparar|preços em lojas diferentes,"
     ],
     [
-      51.32,
+      49.351,
       "viagem",
       "montar um roteiro|de viagem"
     ],
     [
-      53.19,
+      51.221,
       "arquivos",
       "ou organizar os arquivos|de um projeto."
     ],
     [
-      55.87,
+      53.901,
       "cta",
       "Você gostaria que eu|respondesse alguma pergunta?"
     ],
     [
-      58.37,
+      56.401,
       "cta",
       "Então deixe seu comentário|aqui no vídeo"
     ],
     [
-      60.92,
+      58.951,
       "cta_convite",
       "começando com|“Lú, me responde?”"
     ],
     [
-      62.83,
+      60.861,
       "cta",
       "Talvez a sua pergunta seja|o tema do nosso próximo vídeo."
     ],
     [
-      65.86,
+      63.891,
       "despedida",
       "Até lá!"
     ]
   ],
   "acoes": {
-    "jogo": 9.73,
-    "tabuleiro": 10.13,
-    "navegador": 10.65,
-    "reversi": 16.98,
-    "modo_solo": 19.64,
-    "sem_conta": 20.39,
-    "lance_b2": 22.59,
-    "lance_b3": 23.71,
-    "acesso_bloqueado": 44.64,
-    "pergunta_final": 56.6,
-    "comentario_final": 58.8,
-    "proximo_video": 64.52
+    "tabuleiro": 7.761,
+    "navegador": 8.681,
+    "reversi": 15.011,
+    "modo_solo": 17.671,
+    "sem_conta": 18.421,
+    "lance_b2": 20.621,
+    "lance_b3": 21.741,
+    "acesso_bloqueado": 42.671,
+    "pergunta_final": 54.631,
+    "comentario_final": 56.831,
+    "proximo_video": 62.551,
+    "reversi_dimensao": 15.541
   }
 }

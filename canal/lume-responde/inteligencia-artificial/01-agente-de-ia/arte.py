@@ -304,12 +304,6 @@ def icon(name):
                (x+radius*.23,y+radius*.23),(x,y+radius),
                (x-radius*.23,y+radius*.23),(x-radius,y),
                (x-radius*.23,y-radius*.23)],fill=color,outline="#fff1cb",width=4)
-    elif name == "lance":
-        e((27,33,195,201),fill="#4b3655",outline="#2e2749",width=9)
-        e((29,26,187,181),fill="#ffd68c",outline="#ffefa9",width=8)
-        e((47,45,169,165),fill="#ffbd68",outline="#e79959",width=5)
-        d.arc((50,49,162,152),190,280,fill="#fff4c2",width=8)
-        p([(115,87),(181,184),(200,151),(226,137)],fill="#3d2a54",outline="#ffefd9",width=5)
     else:
         raise ValueError(f"Ícone desconhecido: {name}")
     return im
@@ -361,9 +355,3 @@ def crt_art():
     d.ellipse((811,697,818,703),fill="#e0ffa6")
     d.line((878,102,890,688),fill="#765964",width=7)
     return im
-
-
-@lru_cache(maxsize=1)
-def control():
-    return Image.open(CANAL / "assets" / "controle.png").convert("RGBA")
-

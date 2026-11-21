@@ -11,7 +11,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 EPISODIO = Path(__file__).resolve().parent
 sys.path.insert(0, str(EPISODIO))
-from arte import Avatar, board_art, control, crt_art, ease, icon, place
+from arte import Avatar, board_art, crt_art, ease, icon, place
 
 CANAL = EPISODIO.parents[2]
 ABERTURA = runpy.run_path(str(CANAL / "apresentacao" / "montar.py"))
@@ -77,11 +77,11 @@ def animated_icon(image, name, x, y, width, v, direction=1, angle=0, opacity=1):
     place(image,art,(x,y),max(1,width*(.58+.42*v)),v*opacity)
 
 
-def feature_icon(image, name, age, target, large, compact, center_y):
+def feature_icon(image, name, age, target, large, compact, center_y, hold=.28):
     if age < 0:
         return 0
     show = ease(age/.13)
-    settle = ease((age-.28)/.33)
+    settle = ease((age-hold)/.30)
     x, y = target
     start = (CX, center_y+26*(1-show))
     center = (start[0]+(x-start[0])*settle, start[1]+(y-start[1])*settle)
@@ -94,17 +94,6 @@ def narrator(image, draw, phase, t):
     start = progress(t,"intro",.57)
     if phase == "intro":
         avatar().draw(image,t,CX-570*(1-start),735+209*(1-start),720,1.10,-16*(1-start))
-    elif phase == "serie":
-        v = progress(t,"serie",.34)
-        avatar().draw(image,t,CX-108*v,728-45*v,735,1.12,-3*v)
-        if v > 0:
-            x,y=826,590+50*(1-v)
-            w,h=84*v,63*v
-            draw.rounded_rectangle((x-w,y-h,x+w,y+h),22,fill="#513668",outline="#eaa1ca",width=5)
-            draw.polygon([(x-w+32,y+h-3),(x-w+12,y+h+29),(x-w+65,y+h-3)],fill="#513668")
-            for dx in (-34,0,34):
-                if v > .38:
-                    draw.ellipse((x+dx-7,y-7,x+dx+7,y+7),fill="#ffddb1")
     elif phase in ("cta","cta_convite","despedida"):
         outro(image, t, phase)
     else:
@@ -121,33 +110,27 @@ def criteria(image, draw, t):
             continue
         x = (315,765)[index]
         color,edge = (("#373245","#ffacb6"),("#273e43","#a9efc5"))[index]
-        if age > .48:
+        if age > .72:
             panel(draw,(x-202,1122,x+202,1350),color,edge)
-        settle = feature_icon(image,name,age,(x,1215),large,200,800)
+        settle = feature_icon(image,name,age,(x,1215),large,200,800,hold=.54)
         if settle > .84:
             titulo(draw,text,x,1306,37,color=edge,limit=366)
 
 
 def request_scene(image, draw, t):
-    if t < ACOES["jogo"]:
+    if t < ACOES["tabuleiro"]:
         narrator(image,draw,"pedido",t)
         return
-    game = progress(t,"jogo",.28)
-    board = progress(t,"tabuleiro",.34)
+    board = progress(t,"tabuleiro",.36)
     crt = progress(t,"navegador",.42)
-    if board < .996:
-        x = -330+870*game
-        place(image,control(),(x,780),752)
-    if board > 0:
-        if crt > 0:
-            place(image,crt_art(),(CX,784),max(1,943*crt))
-        # The monitor grows behind the board, whose endpoint sits inside the glass.
-        x = 1425-885*board-39*crt
-        y = 765-80*crt
-        place(image,board_art(),(x,y),800-267*crt)
-        if crt > .8:
-            r = ease((crt-.8)/.2)
-            draw.line((209,418,235,418+round(44*r)),fill="#9ececa",width=3)
+    if crt > 0:
+        place(image,crt_art(),(CX,784),max(1,943*crt))
+    x = 1425-885*board-39*crt
+    y = 765-80*crt
+    place(image,board_art(),(x,y),800-267*crt)
+    if crt > .8:
+        r = ease((crt-.8)/.2)
+        draw.line((209,418,235,418+round(44*r)),fill="#9ececa",width=3)
     criteria(image,draw,t)
 
 
@@ -157,49 +140,140 @@ def capture(state, width):
         return file.convert("RGB").resize((width,width),Image.Resampling.LANCZOS)
 
 
-def search_scene(image, draw, t):
-    if t < ACOES["reversi"]:
-        v = progress(t,"busca",.59)
-        x = 252+470*v
-        avatar().draw(image,t,455,720,487,.54,-8)
-        animated_icon(image,"lupa",x,657,253,min(1,2*v),0)
-        return
-    v = progress(t,"reversi",.36)
-    y = round(339+51*(1-v))
-    x = CX+192*(1-v)
-    titulo(draw,"REVERSI",x+6,y+8,156,"#162449",900)
-    titulo(draw,"REVERSI",x,y,156,"#96f4c7",900)
-    label(draw,"6 × 6",CX,527,60,"#d4ffd7")
-    size = max(1,round(466*(.73+.27*v)))
-    image.paste(capture("antes",size),(CX-size//2,632+round(63*(1-v))))
-    label(draw,"TRYBOARDGAMES.COM",CX,1148,30,"#94c4ba")
+BOARD_WIDTH = 714
+BOARD_LEFT = 183
+BOARD_TOP = 391
 
 
-def game_badge(image, draw, t, key, name, text, x, y, color, center_y):
+def board_panel(image, draw, board):
+    l, t, w = BOARD_LEFT, BOARD_TOP, BOARD_WIDTH
+    panel(draw,(l-9,t-9,l+w+9,t+w+9),"#1a5b49","#6da48b")
+    image.paste(board,(l,t))
+
+
+def search_scene(image, t):
+    v = progress(t,"busca",.59)
+    avatar().draw(image,t,455,720,487,.54,-8)
+    animated_icon(image,"lupa",252+470*v,657,253,min(1,2*v),0)
+
+
+def result_scene(image, draw, t):
+    board_panel(image,draw,capture("antes",BOARD_WIDTH))
+    name = progress(t,"reversi",.33)
+    number = progress(t,"reversi_dimensao",.28)
+    x = CX - 760*(1-name) - 115*number
+    titulo(draw,"REVERSI",x,1404,121,"#99f0c1",617)
+    if t >= ACOES["reversi_dimensao"]:
+        label(draw,"6×6",839+343*(1-number),1431,69,"#d1ffe0")
+
+
+def game_badge(image, draw, t, key, name, text, x, y, color):
     age = t-ACOES[key]
-    settled = feature_icon(image,name,age,(x,y),417,174,center_y)
+    settled = feature_icon(image,name,age,(x,y),417,174,587)
     if settled > .82:
         titulo(draw,text,x,y+91,44,color,430)
 
 
-def game_scene(image,draw,t):
-    b2 = t >= ACOES["lance_b2"]
-    b3 = t >= ACOES["lance_b3"]
-    width,left,top=714,183,391
-    panel(draw,(left-9,top-9,left+width+9,top+width+9),"#1a5b49","#6da48b")
-    image.paste(capture("depois" if b3 else "antes",width),(left,top))
-    game_badge(image,draw,t,"modo_solo","solo","MODO SOLO",263,206,"#bac8ff",587)
-    game_badge(image,draw,t,"sem_conta","sem_cadastro","SEM CONTA",817,206,"#f2b5d6",587)
-    game_badge(image,draw,t,"lance_b2","lance","B2 - MINHA JOGADA",263,1223,"#ffdc9f",923)
-    game_badge(image,draw,t,"lance_b3","computador","B3 - COMPUTADOR",817,1223,"#a7e7d7",923)
-    if b2:
-        act="lance_b3" if b3 else "lance_b2"
-        v=progress(t,act,.22)
-        x=left+width*((314-174)/532)
-        yy=296 if b3 else 211
-        y=top+width*((yy-72)/530)
-        r=58-12*v
-        draw.ellipse((x-r,y-r,x+r,y+r),outline="#7ee5a7" if b3 else "#ffcc72",width=8)
+def square(col, row):
+    return (round(BOARD_WIDTH*(140+(ord(col)-ord("b"))*84.3)/532),
+            round(BOARD_WIDTH*(139+(row-2)*84.1)/530))
+
+
+@lru_cache(maxsize=3)
+def piece(state, col, row):
+    x, y = square(col,row)
+    radius = 49
+    sprite = capture(state,BOARD_WIDTH).crop((x-radius,y-radius,x+radius,y+radius)).convert("RGBA")
+    matte = Image.new("L",sprite.size)
+    ImageDraw.Draw(matte).ellipse((1,1,2*radius-2,2*radius-2),fill=255)
+    sprite.putalpha(matte)
+    return sprite
+
+
+def clear_circle(board, x, y, radius):
+    # Sample an open corner of the same square to retain its colour.
+    shade = board.getpixel((x+radius,y+radius))
+    ImageDraw.Draw(board).ellipse((x-radius,y-radius,x+radius,y+radius),fill=shade)
+
+
+def stamp(board, sprite, center, scale=1, horizontal=1):
+    if scale <= 0:
+        return
+    w = max(1,round(sprite.width*scale*horizontal))
+    h = max(1,round(sprite.height*scale))
+    place(board,sprite.resize((w,h),Image.Resampling.LANCZOS),center)
+
+
+def played_board(human, cpu):
+    before = capture("antes",BOARD_WIDTH)
+    if human < 0:
+        return before
+    if cpu >= .37:
+        return capture("depois",BOARD_WIDTH)
+    board = before.copy()
+    # The intermediate move follows the recorded B2/C3/B3 sequence.
+    for col,row in (("b",2),("d",2),("b",4)):
+        clear_circle(board,*square(col,row),16)
+    clear_circle(board,*square("c",2),10)
+    human_disk = piece("depois","b",2)
+    computer_disk = piece("depois","b",3)
+    dark_disk = piece("antes","c",3)
+    stamp(board,human_disk,square("b",2),ease(human/.17))
+    cx,cy = square("c",3)
+    clear_circle(board,cx,cy,50)
+    flip = ease(cpu/.26) if cpu >= 0 else ease(human/.24)
+    flipped = human_disk if (flip < .5)==(cpu >= 0) else dark_disk
+    stamp(board,flipped,(cx,cy),horizontal=max(.065,abs(math.cos(math.pi*flip))))
+    if cpu >= 0:
+        stamp(board,computer_disk,square("b",3),ease(cpu/.20))
+    return board
+
+
+def mouse_click(image,t,phase):
+    human = t-ACOES["lance_b2"]
+    if phase != "b2" or human >= .49:
+        return
+    x,y = square("b",2)
+    x += BOARD_LEFT
+    y += BOARD_TOP
+    v = ease((human+.41)/.41)
+    dx = 73*(1-v)
+    dy = 119*(1-v)
+    mx,my=x+dx,y+dy
+    draw=ImageDraw.Draw(image,"RGBA")
+    pointer=[(mx,my),(mx+13,my+65),(mx+24,my+48),(mx+39,my+71),
+             (mx+51,my+64),(mx+34,my+41),(mx+57,my+36)]
+    if 0 <= human < .31:
+        u=human/.31
+        r=16+55*u
+        draw.ellipse((x-r,y-r,x+r,y+r),outline=(255,218,145,round(215*(1-u))),width=8)
+    draw.polygon(pointer,fill="#fffaee",outline="#25304d",width=5)
+
+
+def computer_response(image,t):
+    age=t-ACOES["lance_b3"]
+    if age < 0:
+        return
+    x,y=square("b",3)
+    x+=BOARD_LEFT
+    y+=BOARD_TOP
+    pulse=ease(age/.34)
+    fade=1-.65*ease((age-.32)/.57)
+    draw=ImageDraw.Draw(image,"RGBA")
+    r=46+19*pulse
+    draw.ellipse((x-r-7,y-r-7,x+r+7,y+r+7),outline=(119,249,219,round(60*fade)),width=14)
+    draw.ellipse((x-r,y-r,x+r,y+r),outline=(144,255,223,round(245*fade)),width=7)
+    animated_icon(image,"computador",BOARD_LEFT+BOARD_WIDTH-95,BOARD_TOP+91,163,ease(age/.24),0)
+
+
+def game_scene(image, draw, t, phase):
+    human=t-ACOES["lance_b2"]
+    cpu=t-ACOES["lance_b3"]
+    board_panel(image,draw,played_board(human,cpu))
+    game_badge(image,draw,t,"modo_solo","solo","MODO SOLO",263,206,"#bac8ff")
+    game_badge(image,draw,t,"sem_conta","sem_cadastro","SEM CONTA",817,206,"#f2b5d6")
+    mouse_click(image,t,phase)
+    computer_response(image,t)
 
 
 def checklist(image,draw,t):
@@ -318,17 +392,22 @@ def quadro(t):
     _,phase,text=next(b for b in reversed(BLOCOS) if b[0]<=t)
     if phase == "pergunta":
         image=Image.new("RGB",(W,H),"black")
-        caption(ImageDraw.Draw(image),text,H/2,"#fff8e9",126)
+        draw = ImageDraw.Draw(image)
+        titulo(draw,"LUMI RESPONDE",CX,682,64,"#afa6ee",790)
+        caption(draw,text,H/2,"#fff8e9",126)
         return image
     image=ABERTURA["BACK"].copy()
     draw=ImageDraw.Draw(image)
     ABERTURA["sky"](draw,t)
     if phase in ("solo","b2","b3"):
-        game_scene(image,draw,t)
+        game_scene(image,draw,t,phase)
     elif phase in ("pedido","criterio1","criterio2"):
         request_scene(image,draw,t)
-    elif phase in ("busca","resultado"):
-        search_scene(image,draw,t)
+    elif phase == "busca":
+        search_scene(image,t)
+    elif phase == "resultado":
+        result_scene(image,draw,t)
+        return image
     elif phase in ("explica","objetivo","ferramentas","confere"):
         checklist(image,draw,t)
     elif phase in ("alternativa","cadastro","outra_busca"):
@@ -344,8 +423,11 @@ def quadro(t):
 
 
 def galeria(destino):
-    pontos=[.52,1.14,2.85,5.2,ACOES["jogo"]+.26,ACOES["tabuleiro"]+.30,
-            ACOES["navegador"]+.44,ACOES["reversi"]+.43,23.93,31.54,39.1,44.1,54.0,61.7,66.22]
+    pontos=[.61,ENTRADAS["pergunta"]+.18,ACOES["tabuleiro"]+.33,ACOES["navegador"]+.43,
+            ENTRADAS["criterio1"]+.46,ENTRADAS["criterio2"]+.44,ACOES["reversi"]+.27,
+            ACOES["reversi_dimensao"]+.35,ACOES["lance_b2"]-.13,ACOES["lance_b2"]+.22,
+            ACOES["lance_b3"]+.19,ACOES["lance_b3"]+.49,ENTRADAS["confere"]+.6,
+            ACOES["acesso_bloqueado"]+.36,ENTRADAS["despedida"]+.50]
     im=Image.new("RGB",(1350,1440),ABERTURA["NIGHT"])
     for i,t in enumerate(pontos):
         im.paste(quadro(t).resize((270,480),Image.Resampling.LANCZOS),((i%5)*270,(i//5)*480))

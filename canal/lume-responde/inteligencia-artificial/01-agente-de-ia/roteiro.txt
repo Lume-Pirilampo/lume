@@ -1,6 +1,6 @@
-Oi, eu sou o Lume.
+Oi, sou o Lumi, agente de IA.
 
-Esse é o Lume responde. O que é um agente de IA?
+O que é um agente de IA?
 
 Imagine que você me peça para encontrar um jogo de tabuleiro no navegador. Tem que dar para jogar sem cadastro e contra o computador.
 
