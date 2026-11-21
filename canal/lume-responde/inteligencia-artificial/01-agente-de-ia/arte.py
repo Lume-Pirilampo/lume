@@ -41,10 +41,11 @@ def avatar_layers():
     wings = pixels.copy()
     main = pixels.copy()
     alpha = np.asarray(matte) > 0
-    # Preserve the root while the outer feathers rotate in front of it.
+    # Keep the inner strip on the body so both layers overlap at the joint.
     wings[~alpha, 3] = 0
-    main[alpha, 3] = 0
-    return Image.fromarray(main), Image.fromarray(wings).crop((0,145,228,439))
+    outer = alpha & (np.arange(crop.width)[None, :] < 191)
+    main[outer, 3] = 0
+    return Image.fromarray(main), Image.fromarray(wings)
 
 
 def eyelid(draw, x, y, w, h, tone):
@@ -60,10 +61,17 @@ def eyelid(draw, x, y, w, h, tone):
 def avatar_pose(wing, mouth, blink):
     base, feather = avatar_layers()
     image = Image.new("RGBA", base.size)
-    size = (round(228 * (.76 + wing*.057)), 294)
-    plume = feather.resize(size, NEAREST).rotate((wing-2)*5, NEAREST, expand=True)
-    ax = 212 - min(8, (4-wing)*2)
-    image.alpha_composite(plume, (round(ax-plume.width+11), round(293-plume.height/2)))
+    # Apply the inverse flap transform around the same point on every pose.
+    hinge_x, hinge_y = 213, 354
+    angle = math.radians((wing-2)*6)
+    scale_x = .66 + wing*.075
+    c, s = math.cos(angle), math.sin(angle)
+    a, b, d, e = c/scale_x, s/scale_x, -s, c
+    feather = feather.transform(base.size, Image.Transform.AFFINE, (
+        a, b, hinge_x-a*hinge_x-b*hinge_y,
+        d, e, hinge_y-d*hinge_x-e*hinge_y,
+    ), NEAREST)
+    image.alpha_composite(feather)
     image.alpha_composite(base)
     draw = ImageDraw.Draw(image)
     if blink:
@@ -141,7 +149,7 @@ def icon(name):
         d.arc((59,53,136,127),192,284,fill="#f1faff",width=8)
         d.arc((57,56,141,135),16,79,fill="#5ab6cc",width=5)
         e((129,81,136,88),fill="#bceaff")
-    elif name == "cadeado":
+    elif name in ("cadeado", "cadeado_bloqueado"):
         d.arc((62,26,177,147),181,359,fill="#552638",width=30)
         d.arc((68,25,171,143),181,359,fill="#f29965",width=19)
         d.arc((68,26,171,142),199,299,fill="#ffe2a4",width=5)
@@ -152,6 +160,14 @@ def icon(name):
         p([(113,140),(128,140),(134,166),(107,166)],fill="#542044")
         l((66,110,106,110),fill="#ffebbf",width=5)
         d.arc((132,134,171,172),298,33,fill="#e78966",width=5)
+        if name == "cadeado_bloqueado":
+            # Change the metal to red while keeping its relief and highlights.
+            blocked = Image.new("RGBA", im.size)
+            blocked.putdata([(
+                min(255, round(red*1.13 + 16)), round(green*.49),
+                min(255, round(blue*.81 + 45)), alpha,
+            ) if alpha else (0,0,0,0) for red,green,blue,alpha in im.getdata()])
+            return blocked
     elif name == "preco":
         p([(26,130),(132,28),(200,44),(207,112),(102,218)],fill="#56234e")
         p([(22,118),(127,21),(196,35),(202,102),(97,205)],fill="#ef62a7",outline="#ffd0e6",width=5)
@@ -239,6 +255,55 @@ def icon(name):
         for x in (64,107,150):
             e((x-9,87,x+9,105),fill="#713b70")
         l((47,52,104,52),fill="#ffe4e4",width=5)
+    elif name == "sem_cadastro":
+        r((15,41,211,197),17,fill="#533663",outline="#292343",width=6)
+        r((11,34,206,183),16,fill="#efd9f2",outline="#a875b2",width=5)
+        r((16,39,201,70),11,fill="#aa7db4")
+        for x in (33,48,63):
+            e((x-4,50,x+4,58),fill="#f8e6f9")
+        e((27,82,49,105),fill="#815d9c")
+        r((23,105,53,125),7,fill="#815d9c")
+        r((66,83,182,105),6,fill="#fff5fe",outline="#b292bc",width=3)
+        r((66,113,182,134),6,fill="#fff5fe",outline="#b292bc",width=3)
+        l((77,94,130,94),fill="#9f7caa",width=4)
+        l((77,123,149,123),fill="#9f7caa",width=4)
+        r((65,140,124,166),7,fill="#8e639e")
+        e((85,58,229,202),outline="#fff5f5",width=22)
+        e((85,58,229,202),outline="#e53649",width=15)
+        l((110,80,207,180),fill="#fff5f5",width=19)
+        l((110,80,207,180),fill="#e53649",width=13)
+    elif name == "duelo":
+        # Separate person and opponent; the cross sits in its own visual column.
+        im = Image.new("RGBA",(408,232))
+        d = ImageDraw.Draw(im)
+        d.rounded_rectangle((5,36,155,194),21,fill="#423c74",outline="#ada9f3",width=5)
+        d.ellipse((54,62,109,118),fill="#f1b6a3",outline="#ffe2c6",width=5)
+        d.arc((47,56,116,124),189,344,fill="#9d6fc4",width=12)
+        d.rounded_rectangle((34,125,128,173),20,fill="#8c83d2",outline="#bab5f2",width=4)
+        d.line((182,96,222,137),fill="#fff1b4",width=10)
+        d.line((222,96,182,137),fill="#fff1b4",width=10)
+        place(im,icon("computador"),(319,112),184)
+    elif name == "pergunta":
+        p([(70,135),(42,195),(114,163)],fill="#8a75d3",outline="#d1d6ff",width=5)
+        r((19,37,216,172),29,fill="#5c529f",outline="#282749",width=8)
+        r((16,30,209,159),27,fill="#8e81d7",outline="#d9d6fc",width=5)
+        d.arc((83,52,148,112),175,389,fill="#fff3e5",width=12)
+        l((142,90,118,107,118,123),fill="#fff3e5",width=10)
+        e((112,132,124,144),fill="#fff3e5")
+    elif name == "proximo":
+        r((17,55,210,183),16,fill="#234568",outline="#29334e",width=8)
+        r((18,44,205,171),17,fill="#68bdc8",outline="#b9f0df",width=6)
+        r((33,60,191,151),11,fill="#25475d")
+        p([(70,76),(70,137),(113,106)],fill="#d0ffdc")
+        l((125,105,170,105),fill="#f9d695",width=8)
+        l((148,83,171,105,148,127),fill="#f9d695",width=8)
+    elif name == "despedida":
+        for x,y,radius,color in [(117,109,70,"#ffd296"),(193,56,29,"#c5aaff"),
+                                 (184,170,34,"#fbaabd")]:
+            p([(x,y-radius),(x+radius*.23,y-radius*.23),(x+radius,y),
+               (x+radius*.23,y+radius*.23),(x,y+radius),
+               (x-radius*.23,y+radius*.23),(x-radius,y),
+               (x-radius*.23,y-radius*.23)],fill=color,outline="#fff1cb",width=4)
     elif name == "lance":
         e((27,33,195,201),fill="#4b3655",outline="#2e2749",width=9)
         e((29,26,187,181),fill="#ffd68c",outline="#ffefa9",width=8)

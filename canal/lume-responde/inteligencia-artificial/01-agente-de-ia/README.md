@@ -1,6 +1,6 @@
 # Lume responde 01 · O que é um agente de IA?
 
-Segundo corte para revisão, com narração Achernar em português brasileiro. A composição foi revisada a partir do [storyboard do episódio](https://chatgpt.com/library?file_id=libfile_8ac89307c67081918f970844fd6b5e8a&account_id=personal).
+Terceiro corte para revisão, com narração Achernar em português brasileiro. A composição foi revisada a partir do [storyboard do episódio](https://chatgpt.com/library?file_id=libfile_8ac89307c67081918f970844fd6b5e8a&account_id=personal).
 
 - [Vídeo vertical](Lume-Responde-01.mp4)
 - [Roteiro](roteiro.txt), [marcas de cena e legenda](cenas.json) e [montagem editável](montar.py)
@@ -10,6 +10,8 @@ Segundo corte para revisão, com narração Achernar em português brasileiro. A
 ## Revisão
 
 O avatar usa o desenho original do canal em camadas, com asas, inclinação, piscadas e poses de boca guiadas pela intensidade da voz. A pergunta ocupa um corte fixo em preto. As entradas de controle, tabuleiro, monitor e nome do jogo são marcas editáveis em `cenas.json`. As marcas foram ajustadas pela forma de onda e pelo espectrograma da fala. A montagem preserva as capturas do Reversi e acumula os quatro marcadores da demonstração.
+
+As asas batem em torno de uma articulação fixa com sobreposição no tronco. Os critérios e os marcadores do jogo aparecem em destaque antes de ocupar suas posições menores. O cadeado reage à fala sobre acesso restrito. Os três exemplos têm rotação breve na chegada, e os símbolos do CTA aparecem ao longo da pergunta, do convite e da despedida.
 
 A faixa reaproveita a tomada fornecida em Achernar e emenda «Talvez a sua pergunta seja o tema do nosso próximo vídeo» com «Até lá».
 

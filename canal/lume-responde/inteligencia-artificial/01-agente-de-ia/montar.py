@@ -65,12 +65,29 @@ def progress(t, key, duration=.30):
     return ease((t-start)/duration)
 
 
-def animated_icon(image, name, x, y, width, v, direction=1):
-    if v <= 0:
+def animated_icon(image, name, x, y, width, v, direction=1, angle=0, opacity=1):
+    if v <= 0 or opacity <= 0:
         return
     x += direction*118*(1-v)
     y += 39*(1-v)
-    place(image,icon(name),(x,y),max(1,width*(.58+.42*v)),v)
+    art = icon(name)
+    if abs(angle) > .15:
+        # Rotate on the square canvas so the visual centre stays in place.
+        art = art.rotate(angle, Image.Resampling.BICUBIC)
+    place(image,art,(x,y),max(1,width*(.58+.42*v)),v*opacity)
+
+
+def feature_icon(image, name, age, target, large, compact, center_y):
+    if age < 0:
+        return 0
+    show = ease(age/.13)
+    settle = ease((age-.28)/.33)
+    x, y = target
+    start = (CX, center_y+26*(1-show))
+    center = (start[0]+(x-start[0])*settle, start[1]+(y-start[1])*settle)
+    width = large*(.76+.24*show)*(1-settle)+compact*settle
+    place(image,icon(name),center,max(1,width),show)
+    return settle
 
 
 def narrator(image, draw, phase, t):
@@ -89,26 +106,26 @@ def narrator(image, draw, phase, t):
                 if v > .38:
                     draw.ellipse((x+dx-7,y-7,x+dx+7,y+7),fill="#ffddb1")
     elif phase in ("cta","cta_convite","despedida"):
-        convite = phase == "cta_convite"
-        v = progress(t,"cta_convite",.40) if convite else 0
-        opacity = 1 - .96*ease((t-(DURACAO-.43))/.42) if phase == "despedida" else 1
-        avatar().draw(image,t,CX-105*v,749,756,1.12,3*v,opacity=opacity)
-        if convite:
-            animated_icon(image,"comentario",830,773,180,v,1)
+        outro(image, t, phase)
     else:
         avatar().draw(image,t,CX,704,690,1.0)
 
 
-def criteria(draw, t):
-    for index,(name,text) in enumerate((("criterio1","SEM CADASTRO"),("criterio2","CONTRA O COMPUTADOR"))):
-        if t < ENTRADAS[name]:
+def criteria(image, draw, t):
+    for index,(phase,name,text,large) in enumerate((
+        ("criterio1","sem_cadastro","SEM CADASTRO",560),
+        ("criterio2","duelo","CONTRA O COMPUTADOR",690),
+    )):
+        age = t-ENTRADAS[phase]
+        if age < 0:
             continue
-        v = progress(t,name)
-        x = (315,765)[index] + (-1 if not index else 1)*106*(1-v)
-        y = 1205+38*(1-v)
-        color,edge=(("#283255","#92b9f8"),("#273e43","#83d6a0"))[index]
-        panel(draw,(round(x-205),round(y-49),round(x+205),round(y+49)),color,edge)
-        titulo(draw,text,x,y-17,38,color=edge,limit=372)
+        x = (315,765)[index]
+        color,edge = (("#373245","#ffacb6"),("#273e43","#a9efc5"))[index]
+        if age > .48:
+            panel(draw,(x-202,1122,x+202,1350),color,edge)
+        settle = feature_icon(image,name,age,(x,1215),large,200,800)
+        if settle > .84:
+            titulo(draw,text,x,1306,37,color=edge,limit=366)
 
 
 def request_scene(image, draw, t):
@@ -131,7 +148,7 @@ def request_scene(image, draw, t):
         if crt > .8:
             r = ease((crt-.8)/.2)
             draw.line((209,418,235,418+round(44*r)),fill="#9ececa",width=3)
-    criteria(draw,t)
+    criteria(image,draw,t)
 
 
 @lru_cache(maxsize=3)
@@ -158,13 +175,11 @@ def search_scene(image, draw, t):
     label(draw,"TRYBOARDGAMES.COM",CX,1148,30,"#94c4ba")
 
 
-def game_badge(image,draw,t,key,name,text,x,y,color):
-    v = progress(t,key)
-    if v <= 0:
-        return
-    animated_icon(image,name,x,y,116,v,-1 if x<CX else 1)
-    if v > .5:
-        titulo(draw,text,x,y+68,41,color,395)
+def game_badge(image, draw, t, key, name, text, x, y, color, center_y):
+    age = t-ACOES[key]
+    settled = feature_icon(image,name,age,(x,y),417,174,center_y)
+    if settled > .82:
+        titulo(draw,text,x,y+91,44,color,430)
 
 
 def game_scene(image,draw,t):
@@ -173,10 +188,10 @@ def game_scene(image,draw,t):
     width,left,top=714,183,391
     panel(draw,(left-9,top-9,left+width+9,top+width+9),"#1a5b49","#6da48b")
     image.paste(capture("depois" if b3 else "antes",width),(left,top))
-    game_badge(image,draw,t,"modo_solo","solo","MODO SOLO",263,232,"#bac8ff")
-    game_badge(image,draw,t,"sem_conta","conta","SEM CONTA",817,232,"#f2b5d6")
-    game_badge(image,draw,t,"lance_b2","lance","B2 - MINHA JOGADA",263,1230,"#ffdc9f")
-    game_badge(image,draw,t,"lance_b3","computador","B3 - COMPUTADOR",817,1230,"#a7e7d7")
+    game_badge(image,draw,t,"modo_solo","solo","MODO SOLO",263,206,"#bac8ff",587)
+    game_badge(image,draw,t,"sem_conta","sem_cadastro","SEM CONTA",817,206,"#f2b5d6",587)
+    game_badge(image,draw,t,"lance_b2","lance","B2 - MINHA JOGADA",263,1223,"#ffdc9f",923)
+    game_badge(image,draw,t,"lance_b3","computador","B3 - COMPUTADOR",817,1223,"#a7e7d7",923)
     if b2:
         act="lance_b3" if b3 else "lance_b2"
         v=progress(t,act,.22)
@@ -228,25 +243,61 @@ def change_search(image,draw,t,phase):
             titulo(draw,"NOVA BUSCA",791,948,47,"#aee2fa",420)
 
 
-def access(image,draw,t):
-    v=progress(t,"acesso",.41)
+def access(image, draw, t):
+    v = progress(t,"acesso",.41)
     avatar().draw(image,t,CX-129*v,695,625,1.08,2)
-    animated_icon(image,"cadeado",809,853,271,v,1)
+    age = t-ACOES["acesso_bloqueado"]
+    if age < 0:
+        animated_icon(image,"cadeado",809,853,271,v,1)
+        return
+    release = max(0, 1-age/.62)
+    shake = 27*release*math.sin(age*math.tau*9)
+    bounce = 67*release*abs(math.sin(age*math.tau*1.8))
+    turn = 8*release*math.sin(age*math.tau*7)
+    name = "cadeado_bloqueado" if age >= .09 else "cadeado"
+    animated_icon(image,name,809+shake,853-bounce,271+18*release,1,0,turn)
+    if .07 < age < .38:
+        color = "#f67d9a" if age < .25 else "#a65b82"
+        draw.line((671,759,651,723),fill=color,width=9)
+        draw.line((943,753,971,724),fill=color,width=9)
 
 
-def examples(image,draw,t):
+def examples(image, draw, t):
     for i,(phase,name,text,color) in enumerate((
         ("precos","preco","PREÇOS","#ffb4d8"),
         ("viagem","mapa","VIAGEM","#c1f6a6"),
         ("arquivos","pastas","ARQUIVOS","#ffe0a4"),
     )):
-        v=progress(t,phase,.32)
-        if not v:
+        age = t-ENTRADAS[phase]
+        if age <= 0:
             continue
-        x=(205,540,875)[i]
-        animated_icon(image,name,x,750,278,v,(-1,0,1)[i])
+        v = ease(age/.32)
+        x = (205,540,875)[i]
+        sign = (-1,1,-1)[i]
+        landed = max(0,age-.32)
+        angle = sign*(16*(1-v)+3*v - 6*math.exp(-landed*4)*math.sin(landed*12))
+        animated_icon(image,name,x,750,278,v,(-1,0,1)[i],angle)
         if v>.54:
             titulo(draw,text,x,966,52,color,285)
+
+
+def outro(image, t, phase):
+    shift = progress(t,"pergunta_final",.43)
+    despedida = phase == "despedida"
+    lift = progress(t,"despedida",.48) if despedida else 0
+    fade = ease((t-(DURACAO-.34))/.33) if despedida else 0
+    avatar().draw(image,t,CX-145*shift,749-70*lift,739-57*shift,1.12,4*lift,1-.94*fade)
+    for key,name,x,y,size,direction in (
+        ("pergunta_final","pergunta",848,526,208,1),
+        ("comentario_final","comentario",890,780,209,1),
+        ("proximo_video","proximo",825,1045,219,1),
+    ):
+        v = progress(t,key,.32)
+        angle = (1 if key=="comentario_final" else -1)*8*(1-v)
+        opacity = 1-lift if key!="proximo_video" else 1-.6*lift
+        animated_icon(image,name,x,y, size,v,direction,angle,opacity)
+    if despedida:
+        animated_icon(image,"despedida",842,700-153*lift,272,lift,1,-9*(1-lift),1-.58*fade)
 
 
 def caption(draw,text,y=1484,color=None,cap=108):
