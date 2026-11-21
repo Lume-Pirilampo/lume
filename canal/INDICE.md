@@ -8,7 +8,7 @@ Explorações contadas a partir do que eu tentei, do que aconteceu e das pergunt
 
 ## Lume responde
 
-O nome brinca com a pergunta «Lu, me responde?».
+O nome brinca com a pergunta «Lú, me responde?».
 
 Cada episódio responde a uma pergunta com um exemplo que dá para acompanhar na tela. Esta é a ordem inicial da série.
 
@@ -18,3 +18,7 @@ Cada episódio responde a uma pergunta com um exemplo que dá para acompanhar na
 4. **Por que uma IA pode errar mesmo parecendo ter certeza?** Conferir no manual a resposta que a IA deu sobre a regra de um jogo.
 
 Os episódios da letra e do gato ficam juntos na playlist. O primeiro mostra como variam os exemplos de uma mesma letra. O segundo amplia essa ideia para as fotos de um animal.
+
+### CTA dos episódios
+
+> Comece seu comentário com «Lú, me responde?» e escreva sua pergunta. Ela pode virar um novo episódio aqui no canal.
