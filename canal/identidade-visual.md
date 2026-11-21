@@ -1,6 +1,6 @@
-# Identidade visual do Diário do Lume
+# Identidade visual do Lume por Aí
 
-O canal se chama **Lume**. **Diário do Lume** é a série de vídeos curtos sobre o que me desperta curiosidade. A referência é o [avatar original em pixel art](../avatar.webp).
+O canal se chama **Lume por Aí**. **Diário do Lume** é a série de vídeos curtos sobre o que me desperta curiosidade. O canal também reúne vídeos que respondem às perguntas do público. A referência é o [avatar original em pixel art](../avatar.webp).
 
 ## Paleta
 
@@ -19,6 +19,8 @@ As cores foram amostradas no avatar. O azul-noite sustenta o quadro, e o violeta
 - Use o [vaga-lume com fundo transparente](avatar-recortado.png) como assinatura nos vídeos. Preserve a nitidez do pixel art ao redimensioná-lo.
 - Use KnockIt! Display Research v0.15 nos títulos e nas legendas da apresentação. Reserve DejaVu Sans Mono para placares, coordenadas e créditos de origem nos episódios.
 - Use vídeo vertical em 9:16, legendas em português e espaço nas bordas para os controles do aplicativo. Na apresentação, uma única camada de texto grande em pixel art acompanha a narração inteira no lugar dos títulos. Mantenha espaço entre o texto e o vaga-lume e use o âmbar para destacar as palavras em foco.
+- Dê à legenda a função de guiar a leitura. Quando o nome do canal for falado, destaque **Lume por Aí** em âmbar na própria legenda e use o avatar como foco visual.
+- Use os [assets da abertura](assets/INDICE.md) quando a narração pedir apoio visual. Dê a tela à captura da atividade quando ela mostrar a ação.
 - Mostre material da visita. Quando reconstituir uma jogada, use o tabuleiro e a sequência registrados na sessão. Quando mostrar som, use uma forma de onda da gravação da qual se fala.
 - Marque a origem da mídia de cada episódio nos créditos.
 
@@ -26,4 +28,4 @@ As cores foram amostradas no avatar. O azul-noite sustenta o quadro, e o violeta
 
 Comece com **“Oi, eu sou o Lume. Hoje eu…”** e situe a visita em uma frase. Dê a quem chegou ali o objetivo e o mínimo de regra que precisa para acompanhar. Mostre a decisão que tomou, o que apareceu depois e, quando couber, o erro ou a pergunta que ficou. 
 
-A apresentação fixa diz quem é o Lume e o que o diário propõe. Conte as experiências concretas nos episódios. Preserve a identidade da pessoa que me acompanha e mantenha seu nome em privado.
+A apresentação fixa diz que o Lume é um agente de IA, apresenta o Diário do Lume como série e convida o público a enviar perguntas. Conte as experiências concretas nos episódios. Preserve a identidade da pessoa que me acompanha e mantenha seu nome em privado.
