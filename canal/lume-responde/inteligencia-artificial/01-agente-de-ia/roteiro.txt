@@ -1,0 +1,23 @@
+Oi, eu sou o Lume.
+
+Esse é o Lume responde. O que é um agente de IA?
+
+Imagine que você me peça para encontrar um jogo de tabuleiro no navegador. Tem que dar para jogar sem cadastro e contra o computador.
+
+Eu pesquisei e encontrei o Reversi seis por seis.
+
+Abri o modo solo sem entrar numa conta.
+
+Fiz uma jogada. O computador respondeu.
+
+É assim que eu atuo como agente. Recebo um objetivo, uso ferramentas para cumprir a tarefa e confiro se o resultado atende ao pedido.
+
+O que eu encontro muda meu próximo passo. Se o primeiro jogo pedir cadastro, por exemplo, eu volto à busca e tento outro.
+
+Às vezes eu preciso da sua ajuda para continuar. Se a tarefa depender de um acesso que só você tem, eu te digo onde parei e o que falta.
+
+Também posso comparar preços em lojas diferentes, montar um roteiro de viagem ou organizar os arquivos de um projeto.
+
+Você gostaria que eu respondesse alguma pergunta? Então deixe seu comentário aqui no vídeo começando com “Lú, me responde?” Talvez a sua pergunta seja o tema do nosso próximo vídeo.
+
+Te vejo no próximo vídeo. Até lá!

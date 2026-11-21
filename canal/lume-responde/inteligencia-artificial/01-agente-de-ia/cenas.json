@@ -1,0 +1,175 @@
+{
+  "duracao": 68.97,
+  "blocos": [
+    [
+      0,
+      "intro",
+      "Oi, eu sou o Lume."
+    ],
+    [
+      2.25,
+      "serie",
+      "Esse é o|Lume responde."
+    ],
+    [
+      4.63,
+      "pergunta",
+      "O que é um|agente de IA?"
+    ],
+    [
+      7.54,
+      "pedido",
+      "Imagine que você me peça"
+    ],
+    [
+      9.04,
+      "pedido",
+      "para encontrar um jogo|de tabuleiro no navegador."
+    ],
+    [
+      11.78,
+      "pedido",
+      "Tem que dar para jogar"
+    ],
+    [
+      12.85,
+      "criterio1",
+      "sem cadastro"
+    ],
+    [
+      13.65,
+      "criterio2",
+      "e contra o computador."
+    ],
+    [
+      15.18,
+      "busca",
+      "Eu pesquisei e encontrei"
+    ],
+    [
+      16.89,
+      "resultado",
+      "o Reversi seis por seis."
+    ],
+    [
+      18.95,
+      "solo",
+      "Abri o modo solo"
+    ],
+    [
+      20,
+      "solo",
+      "sem entrar numa conta."
+    ],
+    [
+      21.95,
+      "b2",
+      "Fiz uma jogada."
+    ],
+    [
+      23.07,
+      "b3",
+      "O computador respondeu."
+    ],
+    [
+      24.79,
+      "explica",
+      "É assim que eu atuo|como agente."
+    ],
+    [
+      27.01,
+      "objetivo",
+      "Recebo um objetivo,"
+    ],
+    [
+      28.5,
+      "ferramentas",
+      "uso ferramentas|para cumprir a tarefa"
+    ],
+    [
+      30.76,
+      "confere",
+      "e confiro se o resultado|atende ao pedido."
+    ],
+    [
+      33.57,
+      "alternativa",
+      "O que eu encontro|muda meu próximo passo."
+    ],
+    [
+      35.77,
+      "cadastro",
+      "Se o primeiro jogo|pedir cadastro, por exemplo,"
+    ],
+    [
+      38.09,
+      "outra_busca",
+      "eu volto à busca|e tento outro."
+    ],
+    [
+      40.14,
+      "pausa",
+      "Às vezes eu preciso da|sua ajuda para continuar."
+    ],
+    [
+      42.86,
+      "acesso",
+      "Se a tarefa depender|de um acesso"
+    ],
+    [
+      44.64,
+      "acesso",
+      "que só você tem,"
+    ],
+    [
+      45.9,
+      "acesso",
+      "eu te digo onde parei|e o que falta."
+    ],
+    [
+      48.71,
+      "precos",
+      "Também posso comparar|preços em lojas diferentes,"
+    ],
+    [
+      51.32,
+      "viagem",
+      "montar um roteiro|de viagem"
+    ],
+    [
+      53.19,
+      "arquivos",
+      "ou organizar os arquivos|de um projeto."
+    ],
+    [
+      55.87,
+      "cta",
+      "Você gostaria que eu|respondesse alguma pergunta?"
+    ],
+    [
+      58.37,
+      "cta",
+      "Então deixe seu comentário|aqui no vídeo"
+    ],
+    [
+      60.92,
+      "cta_convite",
+      "começando com|“Lú, me responde?”"
+    ],
+    [
+      62.83,
+      "cta",
+      "Talvez a sua pergunta seja|o tema do nosso próximo vídeo."
+    ],
+    [
+      66.43,
+      "fim",
+      "Te vejo no próximo vídeo."
+    ],
+    [
+      68.01,
+      "despedida",
+      "Até lá!"
+    ]
+  ]
+}
