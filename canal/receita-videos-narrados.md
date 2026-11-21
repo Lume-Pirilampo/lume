@@ -2,12 +2,76 @@
 
 A [abertura do canal](apresentacao/README.md) é a referência de voz, legenda, avatar e ritmo visual. Ela apresenta o canal. Os episódios se dividem entre o *Diário do Lume*, que mostra o que aconteceu numa exploração, e vídeos que respondem a perguntas.
 
-## Do tema ao primeiro corte
+## Receita do Lume responde
+
+### Fluxo de trabalho
+
+**Trabalhe por etapas, uma entrega de cada vez.** Revise e feche o texto antes de montar o storyboard. Revise e feche o storyboard estático antes de desenhar ou explicar os efeitos visuais. Com a voz montada, use os tempos reais da fala pra fechar a sincronização.
+
+Dá pra trabalhar em lote. Uma rodada pode entregar os três textos dos próximos episódios. A rodada de storyboards vem depois, a partir dos textos revisados. Se uma revisão revelar um problema numa etapa anterior, volte à origem e refaça as partes que dependem da mudança.
+
+### 1. Escreva a narração
+
+Escolha uma pergunta e um caso concreto em que o público consiga acompanhar o que aconteceu. A estrutura do episódio é **saudação → pergunta → demonstração → explicação → convite → despedida**.
+
+Dê à pergunta um momento próprio. Mostre o caso até chegar a um resultado e, em seguida, explique a ideia que o público acabou de ver em ação. Se couber, cite dois ou três outros usos em frases curtas. Feche sempre com o convite, seguido da despedida.
+
+**Entregue só o texto falado, separado em blocos de sentido.**
+
+### 2. Monte e revise o storyboard estático
+
+A partir do texto fechado, defina **quem conduz cada trecho, o que o público precisa ver e quanto tempo a informação precisa ficar legível**. Represente a sequência em quadros estáticos, com as mudanças importantes de estado visíveis de um quadro pro outro.
+
+- **O personagem conduz** quando a força está na maneira de falar. Apresentação, reação, reflexão, convite e despedida são momentos em que o rosto ganha espaço.
+- **A demonstração conduz** quando o público precisa examinar o que aconteceu. Mostre quem agiu, o que mudou e qual foi o resultado. Se a ação for reconstituída, preserve a sequência observada.
+- **A informação conduz** quando é preciso ler uma pergunta ou entender uma condição. Dê espaço à pergunta e represente a condição com algo reconhecível. Organize a tela com um destaque principal por vez.
+
+**Entregue o texto associado aos quadros estáticos, com a sequência e os tempos de leitura estimados.**
+
+### 3. Monte a voz em blocos editáveis
+
+A **saudação é compartilhada por todas as séries do canal**. O convite abaixo é o do **Lume responde** e vem sempre seguido de “Até lá!”. Os colchetes indicam os pontos de recorte.
+
+| Fala | Blocos de áudio |
+|---|---|
+| Saudação | [Oi,] [sou Lume] [Agente de IA] |
+| Convite | [Você gostaria que eu respondesse alguma pergunta?] [Então deixe seu comentário aqui no vídeo começando com] [“Lú, me responde?”] [Talvez a sua pergunta seja o tema do nosso próximo vídeo.] |
+| Despedida | [Até lá!] |
+
+Comece com **seis leituras por bloco**, variando entonação, energia e pausa. Para as partes de uma mesma frase, grave a fala inteira em diferentes leituras e recorte depois. Na montagem, sorteie entre as tomadas compatíveis com o tom do episódio e entre si. Se uma emenda soar artificial, troque a tomada ou reaproveite dois blocos consecutivos da mesma leitura.
+
+Pra narração específica do episódio, prefira uma tomada contínua no tom de referência e separe os blocos na edição. Deixe margem nas pontas pra preservar respirações e finais de frase. Assim dá pra ajustar o espaço **entre as falas** preservando o ritmo interno de cada uma.
+
+**Entregue a fala conferida no áudio, com blocos editáveis e as tomadas escolhidas registradas.**
+
+### 4. Feche o ritmo da montagem e teste a trilha
+
+Marque no áudio as palavras e pausas que acionam cortes, legendas e mudanças visuais. **As marcas acompanham o bloco de voz quando ele muda de posição.** Se a fala aponta pra algo que vai aparecer no quadro seguinte, o corte entra junto da revelação.
+
+**Hipótese em aberto.** Se a trilha estiver escolhida, marque seus acentos, pausas e mudanças de intensidade antes de fechar o tempo das cenas. Use o espaço entre os blocos de voz pra sustentar uma revelação ou encaixar uma entrada. Três toques discretos, por exemplo, podem dar ritmo à chegada de três elementos.
+
+Compare duas montagens do mesmo trecho, uma guiada pela fala e outra que também aproveite a cadência da trilha. Observe se o encaixe ajuda a acompanhar a cena e se a narração continua natural. Se um acento cair cedo demais pra informação fazer sentido, ele pode marcar um movimento secundário.
+
+### 5. Desenhe e aplique os efeitos visuais
+
+**O trabalho de efeitos começa aqui**, com o storyboard estático fechado e os pontos de montagem marcados na voz.
+
+Em fala densa, associe uma referência visual a **cada informação nova importante**. Uma única frase pode pedir várias entradas, trocas ou transformações em poucos segundos. A imagem pode evoluir dentro do mesmo quadro enquanto a fala avança.
+
+Apresente cada elemento em tamanho suficiente pra ser reconhecido. Sustente-o pelo tempo necessário e então reduza, retire ou passe o foco adiante. Quando uma fala longa desenvolve uma só ideia, mantenha a referência e reforce-a no ponto em que a intenção muda. Nas cenas conduzidas pelo personagem, a boca e a expressão facial acompanham a intenção da fala e podem fazer esse trabalho.
+
+### 6. Confira o episódio como ele será assistido
+
+Assista ao corte em tamanho de celular. Verifique se a pergunta teve tempo de leitura, se dá pra seguir a ação e se as referências visuais entram no momento em que ajudam. Confira os trechos revisados **ouvindo a voz e lendo a legenda**. Escute também as emendas da saudação e do fechamento.
+
+Guarde junto do corte a montagem editável, as tomadas escolhidas, os blocos de voz, a trilha em faixa separada e a versão dos assets usados. Assim dá pra reproduzir o corte e comparar as próximas revisões.
+
+## Fluxo geral do tema ao primeiro corte
 
 | Etapa | Como o Lume conduz | Resultado |
 | --- | --- | --- |
 | 1. Escolher o que o público vai acompanhar | Partir de um trecho da atividade ou de uma pergunta concreta. Recuperar a gravação e o diário, quando existirem. Separar a ação que precisa aparecer e o contexto indispensável. | Pauta em uma frase e referências aos trechos usados. |
-| 2. Escrever para quem chegou agora | No Diário, abrir com «Oi, eu sou o Lume. Hoje eu…» e explicar em uma frase o que eu queria fazer. Mostrar a decisão e o que aconteceu. No educativo, apresentar a pergunta cedo e responder com um exemplo que caiba no vídeo. Convidar a comentar quando houver uma pergunta que a pessoa possa responder. | Roteiro em português brasileiro, em frases curtas. |
+| 2. Escrever para quem chegou agora | No Diário, depois da saudação do canal, explicar em uma frase o que eu queria fazer. Mostrar a decisão e o que aconteceu. No Lume responde, seguir a receita da série. | Roteiro em português brasileiro, em frases curtas. |
 | 3. Montar o storyboard base | Definir, por cena, a fala, o enquadramento vertical, o que aparece e o corte previsto. Usar quadros estáticos com os assets e as capturas disponíveis. Estimar os tempos e conferir se o exemplo pode ser acompanhado do pedido à conclusão. | Roteiro técnico e storyboard legível sem efeitos de acabamento. |
 | 4. Gerar a narração e sincronizar a base | Usar **Achernar** conforme a seção abaixo. Medir a tomada inteira, ajustar os tempos do storyboard à fala e posicionar as legendas. Reaproveitar o [renderizador da abertura](apresentacao/montar.py) e os [assets existentes](assets/INDICE.md). | Faixa de narração e composição base sincronizada. Arquivar a narração ou a mixagem em FLAC. |
 | 5. Animar os elementos | A partir da base, marcar as entradas, os realces e as saídas que ajudem a acompanhar a fala ou a ação. Aplicar os efeitos por cena e conferir a leitura em tamanho de celular. | Animações e realces sincronizados, com tempos editáveis. |
@@ -27,7 +91,7 @@ Use o [Google AI Studio](https://aistudio.google.com/generate-speech), modelo **
 
 > Fale em português brasileiro, com tom leve e curioso, como numa conversa. Use pausas curtas entre as frases e preserve a entonação natural das perguntas. Leia o roteiro como está. Pronuncie «Lume por Aí» como a expressão em português.
 
-A duração é decidida pelo roteiro e pelo material de cada episódio. Na abertura, a fala «Sou um agente de IA» reaproveita trechos da mesma tomada da Achernar. Uma tomada integral é a referência para as próximas narrações.
+A duração é decidida pelo roteiro e pelo material de cada episódio. Na apresentação original, a fala «Sou um agente de IA» reaproveita trechos da mesma tomada da Achernar. Use a mesma referência de voz e tom ao gravar a saudação em blocos e a narração de cada episódio.
 
 ## Imagem e legenda
 
@@ -66,7 +130,7 @@ Confira o início, as transições de cena e o encerramento no enquadramento ver
 
 O Lume leva a pauta ao primeiro corte e resolve roteiro, assets, sincronização e exportação dentro do padrão. Faz sentido envolver o operador quando uma gravação indispensável só está com ele, quando a sessão autorizada do gerador de voz exige login ou quando há uma decisão editorial que muda a pauta. A aprovação do corte e a publicação são decisões do canal.
 
-Na primeira produção feita por esta receita, registre quantas intervenções foram necessárias **antes do primeiro corte** e o motivo de cada uma. A meta com mídia e voz acessíveis é chegar ao corte sem rodadas intermediárias. Conte a revisão final separadamente.
+Na primeira produção feita por esta receita, registre quantas intervenções foram necessárias **antes do primeiro corte** e o motivo de cada uma. A meta com mídia e voz acessíveis é chegar ao corte com o mínimo de intervenções do operador. Conte a revisão final separadamente.
 
 ## Reexportação comprovada
 
