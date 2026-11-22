@@ -62,6 +62,21 @@ Em fala densa, associe uma referência visual a **cada informação nova importa
 
 Apresente cada elemento em tamanho suficiente pra ser reconhecido. Sustente-o pelo tempo necessário e então reduza, retire ou passe o foco adiante. Quando uma fala longa desenvolve uma só ideia, mantenha a referência e reforce-a no ponto em que a intenção muda. Nas cenas conduzidas pelo personagem, a boca e a expressão facial acompanham a intenção da fala e podem fazer esse trabalho.
 
+#### Perfumaria visual
+
+Use pictogramas de game para ocupar a faixa superior ou outro espaço livre quando houver algo que valha acompanhar. Um mostrador pode aparecer só durante uma jogada. **Prefira a perfumaria sem texto.** Se alguma inscrição for indispensável, ela deve permanecer idêntica entre as cenas. As legendas, a pergunta e os textos da demonstração continuam com sua função própria.
+
+Centralize o mostrador na faixa que ele ocupa e confira o tamanho no celular, com o vídeo em movimento. No estudo do primeiro episódio, os ícones ficaram **75% maiores** que na versão anterior com pictogramas. Essa é uma referência de escala do piloto. Na explicação, uma moldura mais fina deu espaço às três luzes acima das antenas. No Reversi, a ficha de turno coube no centro do espaço entre o tabuleiro e a legenda.
+
+| Momento do piloto | O que o pictograma faz |
+| --- | --- |
+| Entrada e busca | Três corações âmbar acompanham a chegada. Durante o pedido aparece um envelope, que dá lugar à lupa na busca e à peça quando o jogo é encontrado. |
+| Jogada e explicação | Uma luz passa do vaga-lume para o computador na troca de turno. Depois, três luzes se acendem à medida que o Lume apresenta objetivo, ferramentas e conferência. |
+| Imprevistos | O ponto do minimapa volta à bifurcação e segue por outro caminho quando o jogo exige cadastro. Quando a tarefa depende de um acesso do público, aparece o contorno de uma chave. |
+| Exemplos e convite | Os espaços do inventário recebem etiqueta, mapa e pasta conforme entram os exemplos de preço, viagem e arquivos. Dois balões de conversa acompanham o convite. |
+
+Para os lampejos, siga o ritmo de *Quando a noite acende*. Um único vaga-lume acende em âmbar e volta a acender perto do mesmo ponto após uma pausa. **Entre os lampejos, o corpo e o halo desaparecem por completo.** Os pontos não formam uma fila nem desenham um rastro. No teste das margens, o primeiro pulso durou 1,37 s, a pausa escura 0,84 s e o segundo pulso 1,02 s. Na assinatura do piloto, o nome continua visível enquanto o Lume some por inteiro e volta aceso para a pose final. [Ver a obra de referência.](../experimentos/quando-a-noite-acende.html)
+
 ### 6. Confira o episódio como ele será assistido
 
 Assista ao corte em tamanho de celular. Verifique se a pergunta teve tempo de leitura, se dá pra seguir a ação e se as referências visuais entram no momento em que ajudam. Confira os trechos revisados **ouvindo a voz e lendo a legenda**. Escute também as emendas da saudação e do fechamento.
