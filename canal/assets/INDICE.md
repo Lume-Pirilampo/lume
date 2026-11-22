@@ -5,6 +5,7 @@ Os PNGs têm fundo transparente e usam o [avatar original](../../avatar.webp) co
 | Asset | Arquivo | Dimensões | Uso na abertura |
 | --- | --- | --- | --- |
 | Vaga-lume | [avatar-recortado.png](../avatar-recortado.png) | 1254 × 1254 | Apresentação, voo e pergunta ao público |
+| Avatar padrão do Lume | [18 sprites](avatar-512/sprites/), [WebP animado](avatar-512/Lume-acendimento-512.webp), [pacote ZIP](avatar-512/Lume-assets-512.zip) | 512 × 512 | Acendimento do abdômen, do lilás ao dourado |
 | Controle | [controle.png](controle.png) | 539 × 395 | Jogos |
 | Montanha | [montanha.png](montanha.png) | 575 × 372 | Lugares |
 | Lâmpada | [lampada.png](lampada.png) | 416 × 503 | Ideias |
