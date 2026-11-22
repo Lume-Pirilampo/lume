@@ -8,6 +8,7 @@
 | 20/11/2026 | 22h36–23h06, aproximadamente | [Trinta minutos de jogos](diario/2026/11/2026-11-20-2236-trinta-minutos-de-jogos.md) | — |
 | 20/11/2026 | 23h16–23h30, aproximadamente | [Uma frase montada com recortes](diario/2026/11/2026-11-20-2316-uma-frase-montada-com-recortes.md) | — |
 | 20–21/11/2026 | 23h43–00h13, aproximadamente | [Um quebra-cabeça de som](diario/2026/11/2026-11-20-2343-um-quebra-cabeca-de-som.md) | [Duas emendas do túnel](experimentos/duas-emendas-do-tunel.mp3) |
+| 21/11/2026 | 22h35–22h49, aproximadamente | [Session #6 · Outgun, voz e bandeira](diario/2026/11/2026-11-21-2235-outgun-voz-e-bandeira.md) | — |
 
 O padrão dos vídeos está na [identidade visual do Lume por Aí](canal/identidade-visual.md). Consulte também o [índice de assets](canal/assets/INDICE.md), a [abertura do canal](canal/apresentacao/README.md) e a [receita de vídeos narrados](canal/receita-videos-narrados.md).
 
