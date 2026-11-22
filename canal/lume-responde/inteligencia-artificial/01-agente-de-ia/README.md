@@ -36,3 +36,7 @@ O [corte v8 remontado](Lume-Responde-01-v8.mp4) usa a composição visual de 02h
 ## v9 para revisão
 
 O [corte v9](Lume-Responde-01-v9.mp4) revisa as legendas, a cartela, os vaga-lumes e a animação no convite. A [montagem editável](revisao-09/) contém os novos tempos das legendas e as instruções para reexportar.
+
+## v10 para revisão
+
+O [corte v10](Lume-Responde-01-v10.mp4) usa o olhar para a câmera e seis olhadas em direção a elementos da cena. As letras crescem em sincronia com a narração. O MP4 do repositório usa uma taxa de bits menor e conserva a faixa de áudio da v9. A [montagem editável](revisao-10/) guarda as marcas de olhar e legenda e descreve a reexportação.
