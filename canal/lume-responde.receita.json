@@ -1,6 +1,6 @@
 {
   "serie": "Lume responde",
-  "versao_da_proposta": "0.2",
+  "versao_da_proposta": "0.3",
   "estado": "Especificação de produção para implementação",
   "receita_de_origem": "https://github.com/Lume-Pirilampo/lume/blob/ba79caa/canal/receita-videos-narrados.md",
   "entrada": {
@@ -20,6 +20,23 @@
     "voz": "Achernar, português brasileiro",
     "video": "1080 × 1920, 30 fps, H.264",
     "continuidade_visual": "A montagem deve conduzir o olhar de um foco ao seguinte. Quando uma ação atravessa a mudança de cena, preserve seu movimento e seu estado. Um corte direto cabe quando o espectador consegue acompanhar a ação ou reconhecer o novo foco de imediato.",
+    "avatar": {
+      "manifesto": "assets/avatar-512/Lume-spritesheet-512.json",
+      "animacao": "acendimento",
+      "ciclo_do_abdomen": "Percorrer os 18 estados do lilás ao dourado e retornar pelos estados intermediários, usando as durações do manifesto e contando cada extremo uma vez por ciclo. Calcular a fase pelo tempo do episódio para que o pulso continue ao mudar de cena.",
+      "composicao": "Usar o avatar de 512 × 512 nas cenas do Lume. Ao substituir a arte anterior, alinhar olhos e silhueta para conservar a posição e o tamanho em tela. Animar boca, expressão e voo independentemente da luz do abdômen."
+    },
+    "perfumaria_visual": {
+      "referencia": "receita-videos-narrados.md#perfumaria-visual",
+      "pictogramas": "Exibir um marcador de jogo quando houver um estado, progresso ou troca que o público possa acompanhar. Centralizá-lo na faixa livre durante a ação correspondente, mantendo legíveis a demonstração, a expressão do Lume e a legenda. Preferir pictogramas sem texto. Se uma inscrição for indispensável, conservar a mesma inscrição entre cenas.",
+      "lampejos_de_fundo": "Nas margens, um vaga-lume pulsa em âmbar, desaparece por completo e volta a pulsar perto do mesmo ponto. Manter a pausa inteiramente escura, sem corpo, halo ou rastro.",
+      "referencia_do_piloto": "Os exemplos de pictogramas, o aumento relativo de 75% e a duração do par de lampejos das margens estão documentados na referência. Ajustar a escala ao espaço real do episódio e conferir em movimento no celular."
+    },
+    "assinatura": {
+      "chegada": "Continuar o voo da despedida com o Lume visível até desacelerar e parar na posição final. A boca passa da fala a um sorriso leve.",
+      "piscar_apos_pouso": "Com a posição fixa e o nome visível, apagar suavemente o Lume inteiro, inclusive o halo. Reacendê-lo no mesmo lugar até o último estado dourado, sorrindo. O nome permanece visível durante todo o piscar.",
+      "sustentacao_do_quadro_final_s": 1
+    },
     "audio_de_saida": "AAC, 48 kHz",
     "rastreabilidade": "Guardar as versões do perfil, da receita, dos assets e das tomadas escolhidas junto ao episódio."
   },
@@ -64,7 +81,7 @@
       "id": "efeitos",
       "depende_de": ["ritmo"],
       "entrega": "Camada de animação sobre a composição base. Cada efeito aponta para o elemento e a marca que o disparam.",
-      "verificacoes_por_regra": ["Gatilhos e elementos existem", "A composição renderiza com os efeitos ligados e desligados", "Região de interesse permanece visível durante a demonstração"],
+      "verificacoes_por_regra": ["Gatilhos e elementos existem", "A composição renderiza com os efeitos ligados e desligados", "Região de interesse permanece visível durante a demonstração", "Cada marcador de jogo corresponde a um estado ou evento do storyboard e cabe na faixa livre"],
       "revisao_editorial_inicial_por_modelo": "Comparar quadros da base e da versão animada perto dos gatilhos. Identificar qual informação o efeito revela ou reforça e verificar se ele encobre a ação. Rever cada passagem em velocidade normal, desde antes da troca até o novo foco se estabelecer. Sinalizar o instante em que uma ação parece saltar ou recomeçar, ou em que se perde o foco previsto no storyboard.",
       "se_falhar": "Corrigir ou remover o efeito local."
     },
@@ -85,6 +102,8 @@
   },
   "testes_de_aceitacao_da_maquina": [
     "Reproduzir a montagem do piloto com as tomadas e assets já existentes e checar se os lances e a resposta continuam distinguíveis.",
+    "Renderizar o mesmo trecho de pulsação de uma vez e em duas cenas. Para o mesmo instante, o estado do abdômen deve coincidir. Conferir a passagem de volta do dourado ao lilás pelos estados intermediários.",
+    "Na assinatura, conferir que o Lume fica visível durante o voo, some por inteiro somente depois de parar e reaparece na mesma posição e escala. O nome deve permanecer visível. Conferir o estado dourado e o sorriso e verificar que o último segundo é composto por quadros idênticos.",
     "Trocar só a legenda e conservar uma tomada antiga: o teste de divergência entre voz e texto deve apontar o bloco.",
     "Trocar a tomada na origem e conservar por engano a mixagem antiga no MP4: o teste do áudio exportado deve falhar no trecho afetado.",
     "Produzir a pauta da letra A pelo mesmo fluxo do piloto sem acrescentar lógica ao renderizador exclusiva desse episódio."

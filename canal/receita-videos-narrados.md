@@ -64,6 +64,8 @@ Apresente cada elemento em tamanho suficiente pra ser reconhecido. Sustente-o pe
 
 #### Perfumaria visual
 
+Use os [18 sprites de 512 × 512](assets/avatar-512/Lume-spritesheet-512.json) como avatar da série. Durante as cenas, o abdômen pulsa continuamente do lilás ao dourado e de volta pelos estados intermediários. Use as durações do manifesto, conte cada extremo uma vez por ciclo e mantenha a fase ao trocar de cena. O voo, a fala e o sorriso continuam com seus próprios movimentos. Ao trocar a arte anterior, alinhe os olhos e a silhueta do personagem no enquadramento.
+
 Use pictogramas de game para ocupar a faixa superior ou outro espaço livre quando houver algo que valha acompanhar. Um mostrador pode aparecer só durante uma jogada. **Prefira a perfumaria sem texto.** Se alguma inscrição for indispensável, ela deve permanecer idêntica entre as cenas. As legendas, a pergunta e os textos da demonstração continuam com sua função própria.
 
 Centralize o mostrador na faixa que ele ocupa e confira o tamanho no celular, com o vídeo em movimento. No estudo do primeiro episódio, os ícones ficaram **75% maiores** que na versão anterior com pictogramas. Essa é uma referência de escala do piloto. Na explicação, uma moldura mais fina deu espaço às três luzes acima das antenas. No Reversi, a ficha de turno coube no centro do espaço entre o tabuleiro e a legenda.
@@ -75,7 +77,9 @@ Centralize o mostrador na faixa que ele ocupa e confira o tamanho no celular, co
 | Imprevistos | O ponto do minimapa volta à bifurcação e segue por outro caminho quando o jogo exige cadastro. Quando a tarefa depende de um acesso do público, aparece o contorno de uma chave. |
 | Exemplos e convite | Os espaços do inventário recebem etiqueta, mapa e pasta conforme entram os exemplos de preço, viagem e arquivos. Dois balões de conversa acompanham o convite. |
 
-Para os lampejos, siga o ritmo de *Quando a noite acende*. Um único vaga-lume acende em âmbar e volta a acender perto do mesmo ponto após uma pausa. **Entre os lampejos, o corpo e o halo desaparecem por completo.** Os pontos não formam uma fila nem desenham um rastro. No teste das margens, o primeiro pulso durou 1,37 s, a pausa escura 0,84 s e o segundo pulso 1,02 s. Na assinatura do piloto, o nome continua visível enquanto o Lume some por inteiro e volta aceso para a pose final. [Ver a obra de referência.](../experimentos/quando-a-noite-acende.html)
+Para os lampejos, siga o ritmo de *Quando a noite acende*. Um único vaga-lume acende em âmbar e volta a acender perto do mesmo ponto após uma pausa. **Entre os lampejos, o corpo e o halo desaparecem por completo.** Os pontos não formam uma fila nem desenham um rastro. No teste das margens, o primeiro pulso durou 1,37 s, a pausa escura 0,84 s e o segundo pulso 1,02 s. [Ver a obra de referência.](../experimentos/quando-a-noite-acende.html)
+
+Na assinatura, acompanhe o mesmo Lume desde a despedida até ele desacelerar e parar na pose final, com um sorriso leve. Só então, já parado ao lado do nome, o Lume pisca. O corpo e o halo desaparecem suavemente e reacendem no mesmo lugar. O nome permanece visível durante o piscar. Sustente o último quadro por um segundo, com o Lume dourado e sorrindo.
 
 ### 6. Confira o episódio como ele será assistido
 
