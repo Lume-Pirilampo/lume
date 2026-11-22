@@ -103,7 +103,8 @@ if __name__ == "__main__":
     parser.add_argument("saida", type=Path)
     parser.add_argument("--video", type=Path, help="MP4 da montagem para mixar sem recodificar a imagem")
     args = parser.parse_args()
-    duracao = json.loads((PASTA / "cenas.json").read_text())["duracao"]
+    cenas = json.loads((PASTA / "cenas.json").read_text())
+    duracao = cenas.get("fim_da_voz", cenas.get("duracao"))
     if args.video is None:
         gravar_trilha(args.saida, duracao)
     else:
@@ -111,3 +112,4 @@ if __name__ == "__main__":
             trilha = Path(temporario) / "trilha.wav"
             gravar_trilha(trilha, duracao)
             mixar(args.video, trilha, args.saida)
+

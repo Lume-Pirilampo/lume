@@ -1,184 +1,268 @@
 {
-  "duracao": 64.861,
+  "fim_da_voz": 71.24,
   "blocos": [
     [
-      0,
+      0.0,
       "intro",
-      "Oi, sou Lumi.|Agente de IA."
+      "Oi, sou Lume."
     ],
     [
-      2.661,
+      1.85,
+      "intro",
+      "Agente de IA."
+    ],
+    [
+      3.43,
       "pergunta",
       "O que é um|agente de IA?"
     ],
     [
-      5.571,
+      5.42,
       "pedido",
       "Imagine que você me peça"
     ],
     [
-      7.071,
+      7.69,
       "pedido",
-      "para encontrar um jogo|de tabuleiro no navegador."
+      "para encontrar um jogo"
     ],
     [
-      9.811,
+      8.94,
+      "pedido",
+      "de tabuleiro|no navegador."
+    ],
+    [
+      11.19,
       "pedido",
       "Tem que dar para jogar"
     ],
     [
-      10.881,
+      12.47,
       "criterio1",
       "sem cadastro"
     ],
     [
-      11.681,
+      13.44,
       "criterio2",
       "e contra o computador."
     ],
     [
-      13.211,
+      15.4,
       "busca",
       "Eu pesquisei"
     ],
     [
-      14.221,
-      "busca",
+      16.42,
+      "resultado",
       "e encontrei o"
     ],
     [
-      15.011,
+      17.36,
       "resultado",
       "Reversi seis por seis."
     ],
     [
-      16.981,
+      19.51,
       "solo",
       "Abri o modo solo"
     ],
     [
-      18.031,
+      21.36,
       "solo",
       "sem entrar numa conta."
     ],
     [
-      19.981,
+      23.18,
       "b2",
       "Fiz uma jogada."
     ],
     [
-      21.101,
+      24.92,
       "b3",
       "O computador respondeu."
     ],
     [
-      22.821,
+      26.98,
+      "pronto",
+      "Pronto."
+    ],
+    [
+      27.84,
       "explica",
       "É assim que eu atuo|como agente."
     ],
     [
-      25.041,
+      30.13,
       "objetivo",
       "Recebo um objetivo,"
     ],
     [
-      26.531,
+      31.69,
       "ferramentas",
       "uso ferramentas|para cumprir a tarefa"
     ],
     [
-      28.791,
+      33.81,
       "confere",
       "e confiro se o resultado|atende ao pedido."
     ],
     [
-      31.601,
+      36.68,
       "alternativa",
       "O que eu encontro|muda meu próximo passo."
     ],
     [
-      33.801,
+      39.42,
       "cadastro",
       "Se o primeiro jogo|pedir cadastro, por exemplo,"
     ],
     [
-      36.121,
+      42.12,
       "outra_busca",
       "eu volto à busca|e tento outro."
     ],
     [
-      38.171,
+      44.3,
       "pausa",
       "Às vezes eu preciso da|sua ajuda para continuar."
     ],
     [
-      40.891,
+      47.06,
       "acesso",
       "Se a tarefa depender|de um acesso"
     ],
     [
-      42.671,
+      49.04,
       "acesso",
       "que só você tem,"
     ],
     [
-      43.931,
+      49.81,
       "acesso",
       "eu te digo onde parei|e o que falta."
     ],
     [
-      46.741,
+      52.0,
       "precos",
       "Também posso comparar|preços em lojas diferentes,"
     ],
     [
-      49.351,
+      55.09,
       "viagem",
       "montar um roteiro|de viagem"
     ],
     [
-      51.221,
+      56.75,
       "arquivos",
       "ou organizar os arquivos|de um projeto."
     ],
     [
-      53.901,
+      59.27,
       "cta",
       "Você gostaria que eu|respondesse alguma pergunta?"
     ],
     [
-      56.401,
+      62.23,
       "cta",
       "Então deixe seu comentário|aqui no vídeo"
     ],
     [
-      58.951,
+      64.58,
       "cta_convite",
-      "começando com|“Lú, me responde?”"
+      "começando com"
     ],
     [
-      60.861,
+      65.22,
+      "cta_convite",
+      "“Lú, me responde?”"
+    ],
+    [
+      66.79,
       "cta",
       "Talvez a sua pergunta seja|o tema do nosso próximo vídeo."
     ],
     [
-      63.891,
+      70.43,
       "despedida",
       "Até lá!"
     ]
   ],
-  "acoes": {
-    "tabuleiro": 7.761,
-    "navegador": 8.681,
-    "reversi": 15.011,
-    "modo_solo": 17.671,
-    "sem_conta": 18.421,
-    "lance_b2": 20.621,
-    "lance_b3": 21.741,
-    "acesso_bloqueado": 42.671,
-    "pergunta_final": 54.631,
-    "comentario_final": 56.831,
-    "proximo_video": 62.551,
-    "reversi_dimensao": 15.541
+  "acoes_relativas": {
+    "tabuleiro": [
+      5,
+      0.11
+    ],
+    "navegador": [
+      5,
+      0.98
+    ],
+    "revelacao": [
+      10,
+      0
+    ],
+    "reversi": [
+      11,
+      0
+    ],
+    "reversi_dimensao": [
+      11,
+      0.78
+    ],
+    "modo_solo": [
+      12,
+      1.03
+    ],
+    "sem_conta": [
+      13,
+      0
+    ],
+    "lance_b2": [
+      14,
+      0.4
+    ],
+    "lance_b3": [
+      15,
+      0.86
+    ],
+    "acesso_bloqueado": [
+      26,
+      0
+    ],
+    "pergunta_final": [
+      31,
+      0.35
+    ],
+    "comentario_final": [
+      32,
+      0.96
+    ],
+    "lu_me_responde": [
+      34,
+      0
+    ],
+    "objetivo_visual": [
+      18,
+      0.68
+    ],
+    "ferramentas_visual": [
+      19,
+      0.21
+    ],
+    "confere_visual": [
+      20,
+      0.21
+    ],
+    "precos_visual": [
+      28,
+      1.46
+    ],
+    "viagem_visual": [
+      29,
+      0.27
+    ],
+    "arquivos_visual": [
+      30,
+      0.44
+    ]
   }
 }

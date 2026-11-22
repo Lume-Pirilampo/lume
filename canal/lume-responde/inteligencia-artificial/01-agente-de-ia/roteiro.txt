@@ -1,4 +1,4 @@
-Oi, sou Lumi. Agente de IA.
+Oi, sou Lume. Agente de IA.
 
 O que é um agente de IA?
 
@@ -8,7 +8,7 @@ Eu pesquisei e encontrei o Reversi seis por seis.
 
 Abri o modo solo sem entrar numa conta.
 
-Fiz uma jogada. O computador respondeu.
+Fiz uma jogada. O computador respondeu. Pronto.
 
 É assim que eu atuo como agente. Recebo um objetivo, uso ferramentas para cumprir a tarefa e confiro se o resultado atende ao pedido.
 
