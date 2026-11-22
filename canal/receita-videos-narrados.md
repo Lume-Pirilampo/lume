@@ -4,6 +4,8 @@ A [abertura do canal](apresentacao/README.md) é a referência de voz, legenda, 
 
 ## Receita do Lume responde
 
+A [especificação de produção em JSON](lume-responde.receita.json) reúne as entradas, as etapas e os critérios de revisão da série.
+
 ### Fluxo de trabalho
 
 **Trabalhe por etapas, uma entrega de cada vez.** Revise e feche o texto antes de montar o storyboard. Revise e feche o storyboard estático antes de desenhar ou explicar os efeitos visuais. Com a voz montada, use os tempos reais da fala pra fechar a sincronização.

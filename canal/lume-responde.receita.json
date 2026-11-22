@@ -1,0 +1,92 @@
+{
+  "serie": "Lume responde",
+  "versao_da_proposta": "0.2",
+  "estado": "Especificação de produção para implementação",
+  "receita_de_origem": "https://github.com/Lume-Pirilampo/lume/blob/ba79caa/canal/receita-videos-narrados.md",
+  "entrada": {
+    "obrigatoria": ["pergunta", "caso_concreto", "referencias_para_demonstracao"],
+    "opcional": ["restricoes_da_pauta", "trilha_escolhida"],
+    "exemplo": {
+      "pergunta": "Como uma IA aprende a reconhecer a letra A?",
+      "caso_concreto": "Mostrar exemplos com grafias diferentes e testar uma grafia reservada.",
+      "referencias_para_demonstracao": [
+        "Conjunto de exemplos identificado para o episódio",
+        "Amostra reservada e previsão registrada ou demonstração reproduzível que a gere"
+      ]
+    }
+  },
+  "perfil_do_canal": {
+    "referencias_versionadas": ["identidade visual", "avatar e poses", "fonte", "saudação compartilhada", "convite da série", "despedida", "banco de tomadas"],
+    "voz": "Achernar, português brasileiro",
+    "video": "1080 × 1920, 30 fps, H.264",
+    "continuidade_visual": "A montagem deve conduzir o olhar de um foco ao seguinte. Quando uma ação atravessa a mudança de cena, preserve seu movimento e seu estado. Um corte direto cabe quando o espectador consegue acompanhar a ação ou reconhecer o novo foco de imediato.",
+    "audio_de_saida": "AAC, 48 kHz",
+    "rastreabilidade": "Guardar as versões do perfil, da receita, dos assets e das tomadas escolhidas junto ao episódio."
+  },
+  "etapas": [
+    {
+      "id": "roteiro",
+      "depende_de": [],
+      "entrega": "Texto falado em blocos identificados. As referências ficam nos metadados de produção.",
+      "ordem": ["saudação", "pergunta", "demonstração", "explicação", "convite", "despedida"],
+      "verificacoes_por_regra": ["Blocos presentes e na ordem da série", "Saudação, convite e despedida correspondem à versão do perfil usada"],
+      "revisao_editorial_inicial_por_modelo": "A demonstração chega a um resultado sustentado pelas referências? A explicação responde à pergunta usando esse resultado? Devolver o bloco problemático e o motivo.",
+      "se_falhar": "Reescrever os blocos específicos. Se faltar a evidência de base, registrar qual fonte falta."
+    },
+    {
+      "id": "storyboard",
+      "depende_de": ["roteiro"],
+      "entrega": "Quadros estáticos em formato vertical. Cada quadro identifica bloco falado, condutor, foco, fonte visual e tempo estimado de leitura.",
+      "condutores": ["personagem", "demonstração", "informação"],
+      "passagem_entre_cenas": "Indicar o que o espectador acompanha antes e depois da passagem e qual elemento, ação ou posição em tela liga os dois momentos.",
+      "verificacoes_por_regra": ["Cada bloco falado tem cobertura visual", "Cada fonte está disponível ou possui uma composição prevista", "Texto principal e região de interesse cabem no enquadramento"],
+      "revisao_editorial_inicial_por_modelo": "Examinar os quadros já compostos em tamanho de celular. Para a demonstração, identificar quem agiu, o que mudou e o resultado. Comparar com a referência e apontar os quadros que sustentam a leitura.",
+      "se_falhar": "Refazer enquadramento, ordem, foco ou duração estimada dos quadros afetados. Reabrir o roteiro se o problema vier da fala."
+    },
+    {
+      "id": "voz",
+      "depende_de": ["storyboard"],
+      "entrega": "Faixa contínua editável, blocos de fala identificados e registro das tomadas usadas.",
+      "reutilizacao": "Banco inicial com seis leituras por bloco recorrente conforme a receita. Registrar a seleção e preferir trechos consecutivos da mesma leitura quando a emenda comprometer a frase. Para fala inédita, preferir tomada contínua e recortar depois.",
+      "verificacoes_por_regra": ["Tomada disponível para cada bloco", "Ordem, duração e limites dos recortes válidos"],
+      "checagem_com_inferencia": "Transcrever os blocos e comparar com o texto. Tratar nomes próprios e pronúncias com vocabulário do canal. Uma transcrição divergente indica trecho para inspeção ou nova tentativa.",
+      "se_falhar": "Trocar a tomada ou regenerar o trecho de fala. Manter as partes já válidas."
+    },
+    {
+      "id": "ritmo",
+      "depende_de": ["voz", "storyboard"],
+      "entrega": "Timeline base com marcas relativas aos blocos de voz, legendas e cortes ligados a palavras, pausas ou revelações.",
+      "verificacoes_por_regra": ["Marcas estão dentro do bloco pai", "Legendas ordenadas e completas", "Tempo disponível comporta as janelas de leitura definidas no storyboard"],
+      "trilha": "A montagem guiada pelos acentos da trilha permanece experimental. Quando solicitada, comparar um trecho musical com a base guiada pela fala. Usar a base como padrão enquanto a variante estiver em avaliação.",
+      "se_falhar": "Ajustar pausas entre blocos ou reorganizar o corte. Preservar o ritmo interno da tomada."
+    },
+    {
+      "id": "efeitos",
+      "depende_de": ["ritmo"],
+      "entrega": "Camada de animação sobre a composição base. Cada efeito aponta para o elemento e a marca que o disparam.",
+      "verificacoes_por_regra": ["Gatilhos e elementos existem", "A composição renderiza com os efeitos ligados e desligados", "Região de interesse permanece visível durante a demonstração"],
+      "revisao_editorial_inicial_por_modelo": "Comparar quadros da base e da versão animada perto dos gatilhos. Identificar qual informação o efeito revela ou reforça e verificar se ele encobre a ação. Rever cada passagem em velocidade normal, desde antes da troca até o novo foco se estabelecer. Sinalizar o instante em que uma ação parece saltar ou recomeçar, ou em que se perde o foco previsto no storyboard.",
+      "se_falhar": "Corrigir ou remover o efeito local."
+    },
+    {
+      "id": "exportacao",
+      "depende_de": ["efeitos", "voz"],
+      "entrega": "MP4 completo, composição editável, fontes e relatório de validação.",
+      "verificacoes_por_regra": ["MP4 decodifica até o fim", "Formato, resolução, fps e áudio correspondem ao perfil", "Duração e cobertura de legenda conferem", "Nos blocos de voz corrigidos, o áudio decodificado da exportação corresponde temporalmente à mixagem de referência e contém a tomada selecionada"],
+      "revisao_editorial_inicial_por_modelo": "Reexaminar a demonstração no enquadramento final de celular e conferir os trechos de fala revisados contra o roteiro. Registrar limitações do verificador de áudio.",
+      "se_falhar": "Voltar à primeira etapa responsável pelo defeito e refazer seus dependentes."
+    }
+  ],
+  "execucao_autonoma_proposta": {
+    "revisao": "Cada etapa registra artefato, versão e verificações. O revisor recebe a fonte e o artefato efetivamente produzido.",
+    "recuperacao": "Limitar tentativas por etapa. Ao esgotar o limite, registrar episódio pendente com etapa e motivo, conservar os artefatos e continuar o lote. Falha de acesso ao gerador de voz também permite retomada.",
+    "reexecucao": "Reutilizar tomadas e composições cujas entradas permanecem idênticas. Se a voz mudar de duração, recalcular as marcas e cenas dependentes.",
+    "saida": "Episódio completo validado ou pendência diagnosticada. Publicação é uma operação posterior."
+  },
+  "testes_de_aceitacao_da_maquina": [
+    "Reproduzir a montagem do piloto com as tomadas e assets já existentes e checar se os lances e a resposta continuam distinguíveis.",
+    "Trocar só a legenda e conservar uma tomada antiga: o teste de divergência entre voz e texto deve apontar o bloco.",
+    "Trocar a tomada na origem e conservar por engano a mixagem antiga no MP4: o teste do áudio exportado deve falhar no trecho afetado.",
+    "Produzir a pauta da letra A pelo mesmo fluxo do piloto sem acrescentar lógica ao renderizador exclusiva desse episódio."
+  ]
+}
