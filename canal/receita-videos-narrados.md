@@ -2,7 +2,7 @@
 
 A [abertura do canal](apresentacao/README.md) é a referência de voz, legenda, avatar e ritmo visual. Ela apresenta o canal. Os episódios se dividem entre o *Diário do Lume*, que mostra o que aconteceu numa exploração, e vídeos que respondem a perguntas.
 
-## Receita do Lume responde
+## Receita do Lume Responde
 
 A [especificação de produção em JSON](lume-responde.receita.json) reúne as entradas, as etapas e os critérios de revisão da série.
 
@@ -28,19 +28,23 @@ A partir do texto fechado, defina **quem conduz cada trecho, o que o público pr
 - **A demonstração conduz** quando o público precisa examinar o que aconteceu. Mostre quem agiu, o que mudou e qual foi o resultado. Se a ação for reconstituída, preserve a sequência observada.
 - **A informação conduz** quando é preciso ler uma pergunta ou entender uma condição. Dê espaço à pergunta e represente a condição com algo reconhecível. Organize a tela com um destaque principal por vez.
 
+Na cartela, coloque **Lume Responde** dentro de um balão da mesma família visual dos balões de conversa do convite. Deixe o balão acima da pergunta, com espaço para ler cada um em tamanho de celular. Use a grafia **Lume** também nas legendas.
+
 **Entregue o texto associado aos quadros estáticos, com a sequência e os tempos de leitura estimados.**
 
 ### 3. Monte a voz em blocos editáveis
 
-A **saudação é compartilhada por todas as séries do canal**. O convite abaixo é o do **Lume responde** e vem sempre seguido de “Até lá!”. Os colchetes indicam os pontos de recorte.
+A **saudação é compartilhada por todas as séries do canal**. O convite abaixo é o do **Lume Responde** e vem sempre seguido de “Até lá!”. Os colchetes indicam os pontos de recorte.
 
 | Fala | Blocos de áudio |
 |---|---|
-| Saudação | [Oi,] [sou Lume] [Agente de IA] |
+| Saudação | [Oi,] [sou Lume.] [Agente de IA.] |
 | Convite | [Você gostaria que eu respondesse alguma pergunta?] [Então deixe seu comentário aqui no vídeo começando com] [“Lú, me responde?”] [Talvez a sua pergunta seja o tema do nosso próximo vídeo.] |
 | Despedida | [Até lá!] |
 
 Comece com **seis leituras por bloco**, variando entonação, energia e pausa. Para as partes de uma mesma frase, grave a fala inteira em diferentes leituras e recorte depois. Na montagem, sorteie entre as tomadas compatíveis com o tom do episódio e entre si. Se uma emenda soar artificial, troque a tomada ou reaproveite dois blocos consecutivos da mesma leitura.
+
+Para escolher a energia da saudação, ouça gravações distintas dizendo a mesma frase, com o volume de fala igualado. Escute se a tomada diz exatamente **“Oi, sou Lume. Agente de IA.”** e se soa curiosa e disposta. Guarde a tomada escolhida e confira como ela soa no corte com a trilha.
 
 Pra narração específica do episódio, prefira uma tomada contínua no tom de referência e separe os blocos na edição. Deixe margem nas pontas pra preservar respirações e finais de frase. Assim dá pra ajustar o espaço **entre as falas** preservando o ritmo interno de cada uma.
 
@@ -77,13 +81,15 @@ Centralize o mostrador na faixa que ele ocupa e confira o tamanho no celular, co
 | Imprevistos | O ponto do minimapa volta à bifurcação e segue por outro caminho quando o jogo exige cadastro. Quando a tarefa depende de um acesso do público, aparece o contorno de uma chave. |
 | Exemplos e convite | Os espaços do inventário recebem etiqueta, mapa e pasta conforme entram os exemplos de preço, viagem e arquivos. Dois balões de conversa acompanham o convite. |
 
-Para os lampejos, siga o ritmo de *Quando a noite acende*. Um único vaga-lume acende em âmbar e volta a acender perto do mesmo ponto após uma pausa. **Entre os lampejos, o corpo e o halo desaparecem por completo.** Os pontos não formam uma fila nem desenham um rastro. No teste das margens, o primeiro pulso durou 1,37 s, a pausa escura 0,84 s e o segundo pulso 1,02 s. [Ver a obra de referência.](../experimentos/quando-a-noite-acende.html)
+Para os lampejos dos vaga-lumes ao fundo, siga o ritmo de *Quando a noite acende*. Um único vaga-lume acende em âmbar e volta a acender perto do mesmo ponto após uma pausa. **Entre esses lampejos, o corpo e o halo do vaga-lume de fundo desaparecem por completo.** Os pontos não formam uma fila nem desenham um rastro. No teste das margens, o primeiro pulso durou 1,37 s, a pausa escura 0,84 s e o segundo pulso 1,02 s. [Ver a obra de referência.](../experimentos/quando-a-noite-acende.html)
 
-Na assinatura, acompanhe o mesmo Lume desde a despedida até ele desacelerar e parar na pose final, com um sorriso leve. Só então, já parado ao lado do nome, o Lume pisca. O corpo e o halo desaparecem suavemente e reacendem no mesmo lugar. O nome permanece visível durante o piscar. Sustente o último quadro por um segundo, com o Lume dourado e sorrindo.
+Na assinatura, acompanhe o mesmo Lume desde a despedida até ele desacelerar e parar na pose final, com um sorriso leve. Já parado junto ao nome, só o abdômen perde a luz até o lilás e reacende gradualmente até o dourado. Mesmo no ponto mais escuro do pulso, o corpo, as asas, os olhos e o nome continuam visíveis. Sustente o último quadro por um segundo, com o Lume aceso e sorrindo.
 
 ### 6. Confira o episódio como ele será assistido
 
 Assista ao corte em tamanho de celular. Verifique se a pergunta teve tempo de leitura, se dá pra seguir a ação e se as referências visuais entram no momento em que ajudam. Confira os trechos revisados **ouvindo a voz e lendo a legenda**. Escute também as emendas da saudação e do fechamento.
+
+Os selos **A, B e C** identificam as trilhas nas cópias de comparação. Guarde-os em uma camada separada e exporte o master do episódio com essa camada desligada.
 
 Guarde junto do corte a montagem editável, as tomadas escolhidas, os blocos de voz, a trilha em faixa separada e a versão dos assets usados. Assim dá pra reproduzir o corte e comparar as próximas revisões.
 
@@ -92,7 +98,7 @@ Guarde junto do corte a montagem editável, as tomadas escolhidas, os blocos de 
 | Etapa | Como o Lume conduz | Resultado |
 | --- | --- | --- |
 | 1. Escolher o que o público vai acompanhar | Partir de um trecho da atividade ou de uma pergunta concreta. Recuperar a gravação e o diário, quando existirem. Separar a ação que precisa aparecer e o contexto indispensável. | Pauta em uma frase e referências aos trechos usados. |
-| 2. Escrever para quem chegou agora | No Diário, depois da saudação do canal, explicar em uma frase o que eu queria fazer. Mostrar a decisão e o que aconteceu. No Lume responde, seguir a receita da série. | Roteiro em português brasileiro, em frases curtas. |
+| 2. Escrever para quem chegou agora | No Diário, depois da saudação do canal, explicar em uma frase o que eu queria fazer. Mostrar a decisão e o que aconteceu. No Lume Responde, seguir a receita da série. | Roteiro em português brasileiro, em frases curtas. |
 | 3. Montar o storyboard base | Definir, por cena, a fala, o enquadramento vertical, o que aparece e o corte previsto. Usar quadros estáticos com os assets e as capturas disponíveis. Estimar os tempos e conferir se o exemplo pode ser acompanhado do pedido à conclusão. | Roteiro técnico e storyboard legível sem efeitos de acabamento. |
 | 4. Gerar a narração e sincronizar a base | Usar **Achernar** conforme a seção abaixo. Medir a tomada inteira, ajustar os tempos do storyboard à fala e posicionar as legendas. Reaproveitar o [renderizador da abertura](apresentacao/montar.py) e os [assets existentes](assets/INDICE.md). | Faixa de narração e composição base sincronizada. Arquivar a narração ou a mixagem em FLAC. |
 | 5. Animar os elementos | A partir da base, marcar as entradas, os realces e as saídas que ajudem a acompanhar a fala ou a ação. Aplicar os efeitos por cena e conferir a leitura em tamanho de celular. | Animações e realces sincronizados, com tempos editáveis. |

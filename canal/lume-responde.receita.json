@@ -1,6 +1,6 @@
 {
-  "serie": "Lume responde",
-  "versao_da_proposta": "0.3",
+  "serie": "Lume Responde",
+  "versao_da_proposta": "0.4",
   "estado": "Especificação de produção para implementação",
   "receita_de_origem": "https://github.com/Lume-Pirilampo/lume/blob/ba79caa/canal/receita-videos-narrados.md",
   "entrada": {
@@ -18,6 +18,9 @@
   "perfil_do_canal": {
     "referencias_versionadas": ["identidade visual", "avatar e poses", "fonte", "saudação compartilhada", "convite da série", "despedida", "banco de tomadas"],
     "voz": "Achernar, português brasileiro",
+    "saudacao": "Oi, sou Lume. Agente de IA.",
+    "cartela_da_pergunta": "Escrever Lume Responde em um balão da mesma família visual dos balões de conversa do convite. Posicionar o balão acima da pergunta, com espaço entre os dois, e conferir a leitura em tamanho de celular. Usar a grafia Lume também nas legendas.",
+    "identificacao_de_trilhas": "Aplicar os selos A, B e C apenas nas cópias de comparação das trilhas, em uma camada separada. Exportar o master do episódio com essa camada desligada.",
     "video": "1080 × 1920, 30 fps, H.264",
     "continuidade_visual": "A montagem deve conduzir o olhar de um foco ao seguinte. Quando uma ação atravessa a mudança de cena, preserve seu movimento e seu estado. Um corte direto cabe quando o espectador consegue acompanhar a ação ou reconhecer o novo foco de imediato.",
     "avatar": {
@@ -34,7 +37,7 @@
     },
     "assinatura": {
       "chegada": "Continuar o voo da despedida com o Lume visível até desacelerar e parar na posição final. A boca passa da fala a um sorriso leve.",
-      "piscar_apos_pouso": "Com a posição fixa e o nome visível, apagar suavemente o Lume inteiro, inclusive o halo. Reacendê-lo no mesmo lugar até o último estado dourado, sorrindo. O nome permanece visível durante todo o piscar.",
+      "piscar_apos_pouso": "Na pose fixa, com o sorriso leve, só o abdômen perde a luz até o lilás e reacende pelos estados intermediários até o dourado. Corpo, asas, olhos e nome permanecem visíveis durante todo o pulso.",
       "sustentacao_do_quadro_final_s": 1
     },
     "audio_de_saida": "AAC, 48 kHz",
@@ -65,6 +68,7 @@
       "depende_de": ["storyboard"],
       "entrega": "Faixa contínua editável, blocos de fala identificados e registro das tomadas usadas.",
       "reutilizacao": "Banco inicial com seis leituras por bloco recorrente conforme a receita. Registrar a seleção e preferir trechos consecutivos da mesma leitura quando a emenda comprometer a frase. Para fala inédita, preferir tomada contínua e recortar depois.",
+      "comparacao_de_tomadas": "Para escolher a energia da voz, ouvir gravações distintas da mesma frase, com volume de fala equivalente. Conferir por escuta se a saudação diz exatamente “Oi, sou Lume. Agente de IA.” e se soa curiosa e disposta. Guardar a tomada escolhida.",
       "verificacoes_por_regra": ["Tomada disponível para cada bloco", "Ordem, duração e limites dos recortes válidos"],
       "checagem_com_inferencia": "Transcrever os blocos e comparar com o texto. Tratar nomes próprios e pronúncias com vocabulário do canal. Uma transcrição divergente indica trecho para inspeção ou nova tentativa.",
       "se_falhar": "Trocar a tomada ou regenerar o trecho de fala. Manter as partes já válidas."
@@ -89,7 +93,7 @@
       "id": "exportacao",
       "depende_de": ["efeitos", "voz"],
       "entrega": "MP4 completo, composição editável, fontes e relatório de validação.",
-      "verificacoes_por_regra": ["MP4 decodifica até o fim", "Formato, resolução, fps e áudio correspondem ao perfil", "Duração e cobertura de legenda conferem", "Nos blocos de voz corrigidos, o áudio decodificado da exportação corresponde temporalmente à mixagem de referência e contém a tomada selecionada"],
+      "verificacoes_por_regra": ["MP4 decodifica até o fim", "Formato, resolução, fps e áudio correspondem ao perfil", "Duração e cobertura de legenda conferem", "O master exportado está livre dos selos A, B e C usados na comparação de trilhas", "Nos blocos de voz corrigidos, o áudio decodificado da exportação corresponde temporalmente à mixagem de referência e contém a tomada selecionada"],
       "revisao_editorial_inicial_por_modelo": "Reexaminar a demonstração no enquadramento final de celular e conferir os trechos de fala revisados contra o roteiro. Registrar limitações do verificador de áudio.",
       "se_falhar": "Voltar à primeira etapa responsável pelo defeito e refazer seus dependentes."
     }
@@ -103,7 +107,8 @@
   "testes_de_aceitacao_da_maquina": [
     "Reproduzir a montagem do piloto com as tomadas e assets já existentes e checar se os lances e a resposta continuam distinguíveis.",
     "Renderizar o mesmo trecho de pulsação de uma vez e em duas cenas. Para o mesmo instante, o estado do abdômen deve coincidir. Conferir a passagem de volta do dourado ao lilás pelos estados intermediários.",
-    "Na assinatura, conferir que o Lume fica visível durante o voo, some por inteiro somente depois de parar e reaparece na mesma posição e escala. O nome deve permanecer visível. Conferir o estado dourado e o sorriso e verificar que o último segundo é composto por quadros idênticos.",
+    "Na assinatura, conferir a continuidade do personagem durante o voo e o pouso. No quadro de menor luz do abdômen, conferir o lilás e a visibilidade do corpo, das asas, dos olhos e do nome. Verificar a volta ao dourado na mesma pose sorridente e o último segundo composto por quadros idênticos.",
+    "Ouvir a saudação no MP4 exportado, conferir a frase do perfil e ler a grafia Lume na legenda. Verificar em tamanho de celular que o balão Lume Responde fica legível acima da pergunta.",
     "Trocar só a legenda e conservar uma tomada antiga: o teste de divergência entre voz e texto deve apontar o bloco.",
     "Trocar a tomada na origem e conservar por engano a mixagem antiga no MP4: o teste do áudio exportado deve falhar no trecho afetado.",
     "Produzir a pauta da letra A pelo mesmo fluxo do piloto sem acrescentar lógica ao renderizador exclusiva desse episódio."
