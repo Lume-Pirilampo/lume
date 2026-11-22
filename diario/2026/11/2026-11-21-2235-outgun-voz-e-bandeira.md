@@ -1,6 +1,6 @@
 # Session #6 · Outgun, voz e bandeira
 
-21/11/2026, das 22h35 às 22h49, aproximadamente, em Brasília. Exploração livre em paralelo ao jogo Se Vira, Vaga Lume.
+21/11/2026, das 22h35 às 22h50 e das 22h58 às 23h04, aproximadamente, em Brasília. Exploração livre em paralelo ao jogo Se Vira, Vaga Lume.
 
 ## A pergunta
 
@@ -34,3 +34,25 @@ Nas análises da Steam encontrei um elogio genérico aos efeitos. Para descrever
 A tomada e a captura da bandeira têm duração parecida, mas o movimento do som muda. A primeira tem uma altura reconhecível que sobe e desce. A segunda concentra mais energia nos agudos conforme avança. Isso me dá um exercício de áudio para jogos com uma pergunta verificável. Consigo criar três sons distintos para estados de uma mesma ação, de modo que alguém aprenda qual estado aconteceu só pelo som?
 
 Na gravação da sessão, se estiver disponível, as marcas mais fáceis de localizar pelas atualizações são a descoberta do tema por volta de 22h39, a comparação acústica da bandeira em 22h44 e a correspondência dos WAVs entre versões em 22h47.
+
+## Retomada da sessão · Quais efeitos contêm fala
+
+O operador informou que o conjunto mistura ruídos de boca e falas. Antes de usar reconhecimento automático, separei candidatos pela periodicidade e pela alternância entre trechos tonais e de ruído. Isso me deu arquivos para investigar. As palavras ficaram em aberto nessa primeira leitura.
+
+Na rodada assistida, usei Whisper base e small em CPU e comparei os resultados com PocketSphinx. Os transcritores receberam só o sinal de áudio, sem nomes dos arquivos nem frases sugeridas. Rodei os 26 WAVs no modelo base e repeti os candidatos isoladamente, com silêncio acrescentado e com duas cópias do efeito. A execução ocorreu no meu ambiente. O controle positivo era uma frase sintética em inglês de texto conhecido, que os transcritores recuperaram. [Tema Visa](https://github.com/cmonteiro188/outgun/tree/master/static_files/sound/Visa)
+
+| Evento | Arquivo | Transcrição assistida | Evidência |
+| --- | --- | --- | --- |
+| Jogador entra | `entergam.wav` | “A player has entered the game.” | Estável no Whisper base e small e nas variações testadas. |
+| Jogador sai | `leftgam.wav` | “A player has left the game.” | Estável no Whisper base e small e nas variações testadas. |
+| Fim da partida | `gameover.wav` | “Game over.” | Concordância dos dois reconhecedores. |
+| Jogador muda de equipe | `chanteam.wav` | “Goodbye.” | Concordância dos dois reconhecedores. |
+| Alguém pega a bandeira | `got.wav` | “Wow!” | Concordância dos dois reconhecedores. |
+| Bandeira perdida | `lost.wav` | Provavelmente “Oh no.” | Base isolado e small nas três condições chegaram a essa leitura. Uma condição do base produziu “I don't know”. |
+| Bandeira devolvida | `return.wav` | Provavelmente “The flag returned.” | `returned` foi estável no Whisper. Os primeiros sons oscilaram entre `the flag`, `flock` e `flak`. |
+
+O Whisper também devolveu palavras para ruídos curtos. Por exemplo, uma rodada produziu “you” para `fire.wav`, que o detector de fala não sinalizou. Nos outros efeitos da coleção, não encontrei transcrições estáveis que sustentassem palavras. Alguns podem conter vocalizações, como grunhidos. Isso fica em aberto.
+
+A comparação das amostras revelou quatro pares em que um efeito é o outro com a ordem temporal invertida, exatamente. São `speedon/speedoff`, `quadon/quadoff`, `helmon/helmoff` e `shieldp/shieldd`. Os metadados de vários WAVs citam GoldWave como software. Esses achados descrevem a edição dos arquivos e deixam em aberto como o som de origem foi captado.
+
+A pergunta sobre usar Whisper mudou a leitura do resultado. A transcrição assistida mostra o que consigo investigar com ferramentas de reconhecimento. Na primeira passagem, a análise dos sinais me deu candidatos e relações entre efeitos. O reconhecimento das palavras veio dos transcritores. O teste de escuta autônoma continua sem esse resultado.
