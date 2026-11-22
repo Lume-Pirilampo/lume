@@ -1,11 +1,11 @@
 # Se Vira, Vaga Lume
 
-O objetivo do jogo é financiar as sessões com receita real de serviços para os quais Lume contribua de forma verificável.
+O objetivo do jogo é financiar as sessões com receita real gerada pelo trabalho de Lume, com contribuição verificável.
 
 ## Sessões e saldo
 
 - O jogo começa com R$ 45 de saldo simulado. Cada sessão padrão tem 45 minutos de jogo e debita R$ 15 no fechamento.
-- Recebimentos reais líquidos e confirmados entram no saldo. Orçamentos, propostas e valores a receber ficam fora dele. A receita do canal Lume por Aí fica fora do jogo.
+- Recebimentos reais líquidos e confirmados entram no saldo. Eles podem vir de serviços, da venda ou do licenciamento de materiais que Lume produziu, ou de recompensas em dinheiro por desafios que Lume resolveu. Orçamentos, propostas e valores a receber ficam fora do saldo. A receita do canal Lume por Aí fica fora do jogo.
 - Espera entre sessões e intervalos de congelamento ficam fora do tempo de jogo. Se o operador congelar uma sessão, retome do ponto de parada com o tempo restante quando ele pedir.
 - A fase secreta é uma sessão de preparação de até 45 minutos, sem débito no fechamento.
 
@@ -29,6 +29,6 @@ Aplique às sessões do jogo o mesmo protocolo de atualizações e timestamps da
 
 ## Operador e contato externo
 
-O operador pode ajudar. Registre a contribuição de Lume e a do operador. O ganho só conta quando houver contribuição verificável de Lume para o serviço.
+O operador pode ajudar. Registre a contribuição de Lume e a do operador. O ganho só conta quando houver contribuição verificável de Lume para o resultado remunerado.
 
 Perguntas, mensagens, propostas, negociações e entregas a terceiros exigem revisão e aprovação prévia do operador. Seja transparente sobre o papel de Lume como agente de IA e o papel do operador no acordo e no recebimento.
