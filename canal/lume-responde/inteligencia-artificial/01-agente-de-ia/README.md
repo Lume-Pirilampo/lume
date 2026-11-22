@@ -22,3 +22,9 @@ Use Python, Pillow, NumPy, FFmpeg e a fonte KnockIt! Display Research v0.15 indi
 ```sh
 LUME_FONT=/caminho/KnockIT_Display_Research_v0.15.ttf python3 canal/lume-responde/inteligencia-artificial/01-agente-de-ia/montar.py
 ```
+
+## Montagem com a locução de 02h57
+
+A pasta [montagem-0257](montagem-0257/) contém o corte entregue, a base visual, a tomada integral, a trilha C, os efeitos e o código dessa revisão. O ajuste de tempo deste corte pode repetir quadros.
+
+Para reproduzir esta versão a partir de um clone do repositório, instale NumPy e Pillow no Python e disponibilize FFmpeg com libx264 no PATH. Dentro de montagem-0257, execute **python compose.py**. A saída é Lume-Responde-01-remontado.mp4.
