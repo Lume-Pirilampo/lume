@@ -1,7 +1,4 @@
-from bisect import bisect_right
 from functools import lru_cache
-from itertools import accumulate
-import json
 import math
 from pathlib import Path
 import subprocess
@@ -32,118 +29,70 @@ def place(image, asset, center, width=None, opacity=1):
     image.paste(asset, (round(x-asset.width/2), round(y-asset.height/2)), alpha)
 
 
-AVATAR_ATLAS = CANAL / "assets" / "avatar-512"
-AVATAR_BOX = (80, 27, 432, 485)
-NEUTRAL_WING = 2
-
-
 @lru_cache(maxsize=1)
-def avatar_sheet():
-    manifest = json.loads((AVATAR_ATLAS / "Lume-spritesheet-512.json").read_text(encoding="utf-8"))
-    frames = manifest["frames"]
-    with Image.open(AVATAR_ATLAS / manifest["meta"]["image"]) as atlas:
-        atlas = atlas.convert("RGBA")
-        sprites = []
-        for item in frames:
-            box = item["frame"]
-            x, y = box["x"], box["y"]
-            sprites.append(atlas.crop((x, y, x + box["w"], y + box["h"])))
-    durations = [item["duration"] / 1000 for item in frames]
-    return sprites, durations
-
-
-def pulse_frame(t):
-    sprites, durations = avatar_sheet()
-    sequence = list(range(len(sprites))) + list(range(len(sprites) - 2, 0, -1))
-    state_ends = list(accumulate(durations[index] for index in sequence))
-    return sequence[bisect_right(state_ends, t % state_ends[-1])]
-
-
-def signature_frame(t):
-    sprites, durations = avatar_sheet()
-    bright = len(sprites) - 1
-    sequence = list(range(bright - 1, -1, -1)) + list(range(1, bright))
-    state_ends = list(accumulate(durations[index] for index in sequence))
-    index = bisect_right(state_ends, max(0, t))
-    return sequence[index] if index < len(sequence) else bright
-
-
-def signature_pulse_duration():
-    _, durations = avatar_sheet()
-    return durations[0] + 2 * sum(durations[1:-1])
-
-
-@lru_cache(maxsize=18)
-def avatar_layers(state):
-    full = avatar_sheet()[0][state]
-    matte = Image.new("L", full.size)
-    ImageDraw.Draw(matte).polygon(
-        [(44, 129), (172, 131), (190, 165), (191, 215), (197, 255),
-         (220, 286), (199, 309), (170, 324), (103, 342), (52, 342)], fill=255
-    )
+def avatar_layers():
+    full = Image.open(CANAL / "avatar-recortado.png").convert("RGBA")
+    crop = full.crop(full.getchannel("A").point(lambda x: 255 if x > 20 else 0).getbbox())
+    crop = crop.resize((580, 640), NEAREST)
+    matte = Image.new("L", crop.size)
+    ImageDraw.Draw(matte).polygon([(0,142),(174,143),(209,232),(209,342),
+                                   (226,362),(218,382),(162,402),(119,431),(0,438)], fill=255)
+    pixels = np.array(crop)
+    wings = pixels.copy()
+    main = pixels.copy()
     alpha = np.asarray(matte) > 0
-    wings = np.array(full)
-    body = wings.copy()
+    # Keep the inner strip on the body so both layers overlap at the joint.
     wings[~alpha, 3] = 0
-    body[alpha & (np.arange(full.width)[None, :] < 202), 3] = 0
-    return Image.fromarray(body), Image.fromarray(wings)
+    outer = alpha & (np.arange(crop.width)[None, :] < 191)
+    main[outer, 3] = 0
+    return Image.fromarray(main), Image.fromarray(wings)
 
 
-@lru_cache(maxsize=95)
-def avatar_pose(state, wing, mouth, blink):
-    if wing == NEUTRAL_WING:
-        image = avatar_sheet()[0][state].copy()
-    else:
-        body, feather = avatar_layers(state)
-        image = Image.new("RGBA", body.size)
-        hinge_x, hinge_y = 207, 286
-        angle = math.radians((wing - NEUTRAL_WING) * 5)
-        scale_x = 1 + (wing - NEUTRAL_WING) * .075
-        c, s = math.cos(angle), math.sin(angle)
-        a, b, d, e = c / scale_x, s / scale_x, -s, c
-        feather = feather.transform(body.size, Image.Transform.AFFINE, (
-            a, b, hinge_x - a * hinge_x - b * hinge_y,
-            d, e, hinge_y - d * hinge_x - e * hinge_y,
-        ), NEAREST)
-        image.alpha_composite(feather)
-        image.alpha_composite(body)
+def eyelid(draw, x, y, w, h, tone):
+    draw.polygon([(x+10,y),(x+w-9,y),(x+w,y+13),(x+w,y+h-13),
+                  (x+w-11,y+h),(x+10,y+h),(x,y+h-12),(x,y+11)], fill=tone)
+    mid = y + round(h*.57)
+    draw.line([(x+7,mid-3),(x+16,mid+3),(x+w-17,mid+3),(x+w-7,mid-3)],
+              fill=(26,12,53,255), width=8)
+    draw.line([(x+21,mid-7),(x+w-21,mid-7)], fill=(102,65,145,255), width=3)
 
+
+@lru_cache(maxsize=110)
+def avatar_pose(wing, mouth, blink):
+    base, feather = avatar_layers()
+    image = Image.new("RGBA", base.size)
+    # Apply the inverse flap transform around the same point on every pose.
+    hinge_x, hinge_y = 213, 354
+    angle = math.radians((wing-2)*6)
+    scale_x = .66 + wing*.075
+    c, s = math.cos(angle), math.sin(angle)
+    a, b, d, e = c/scale_x, s/scale_x, -s, c
+    feather = feather.transform(base.size, Image.Transform.AFFINE, (
+        a, b, hinge_x-a*hinge_x-b*hinge_y,
+        d, e, hinge_y-d*hinge_x-e*hinge_y,
+    ), NEAREST)
+    image.alpha_composite(feather)
+    image.alpha_composite(base)
     draw = ImageDraw.Draw(image)
     if blink:
-        draw.polygon([(248, 226), (259, 213), (283, 209), (298, 219), (304, 241),
-                      (297, 255), (277, 265), (254, 260), (246, 248)], fill="#744077")
-        draw.line([(251, 243), (263, 247), (279, 244), (296, 234)], fill="#2d1538", width=6)
-        draw.polygon([(333, 209), (339, 196), (354, 193), (366, 205), (371, 229),
-                      (367, 243), (354, 250), (341, 244), (334, 231)], fill="#754279")
-        draw.line([(338, 221), (346, 226), (355, 223), (365, 214)], fill="#301633", width=5)
-    if mouth != 3:
-        # The atlas pose is the open vowel. For the smaller poses, repaint only
-        # the original mouth area using surrounding cheek colors.
-        cover = Image.new("L", image.size)
-        ImageDraw.Draw(cover).polygon(
-            [(309, 253), (340, 252), (348, 261), (346, 277),
-             (336, 292), (322, 293), (308, 284), (302, 270)], fill=255
-        )
-        colors = image.load()
-        patch = Image.new("RGBA", (47, 42))
-        for y in range(252, 294):
-            left = colors[300, y]
-            right = colors[350, y]
-            for x in range(302, 349):
-                u = (x - 300) / 50
-                patch.putpixel((x - 302, y - 252),
-                               tuple(round((1 - u) * a + u * b) for a, b in zip(left, right)))
-        image.paste(patch, (302, 252), cover.crop((302, 252, 349, 294)))
-        draw = ImageDraw.Draw(image)
-        if mouth in (0, 4):
-            draw.line([(313, 270), (322, 275), (332, 273), (339, 267)], fill="#321637", width=5)
+        eyelid(draw, 279, 265, 89, 87, (62,39,103,255))
+        eyelid(draw, 414, 240, 52, 82, (66,40,105,255))
+    if mouth:
+        draw.polygon([(370,335),(414,319),(423,325),(423,354),(407,370),(381,368),(370,355)],
+                     fill=(62,39,102,255))
+        h = (0,10,23,36)[mouth]
+        top = 347-h//2
+        if mouth == 1:
+            draw.line([(377,344),(384,350),(404,350),(414,341)], fill=(23,11,48,255),width=7)
         else:
-            lower = 276 if mouth == 1 else 286
-            draw.polygon([(313, 264), (336, 260), (342, 266), (339, lower - 4),
-                          (329, lower), (318, lower - 2), (311, 271)], fill="#271429")
-            if mouth == 2:
-                draw.rectangle((320, 278, 332, 281), fill="#e98550")
-    return image.crop(AVATAR_BOX)
+            left,right = (375,416) if mouth == 2 else (378,413)
+            draw.polygon([(left+5,top),(right-6,top-3),(right,top+7),(right-3,top+h-4),
+                          (right-10,top+h),(left+10,top+h),(left,top+h-9),(left,top+6)],
+                         fill=(19,9,41,255))
+            draw.rectangle((left+9,top+h-8,right-8,top+h-3),fill=(250,106,120,255))
+            if mouth == 3:
+                draw.rectangle((left+10,top+3,right-9,top+6),fill=(255,224,181,255))
+    return image
 
 
 class Avatar:
@@ -153,36 +102,30 @@ class Avatar:
             "ffmpeg", "-v", "error", "-i", str(audio_path), "-ac", "1",
             "-ar", str(self.rate), "-f", "s16le", "-"
         ])
-        self.wave = np.frombuffer(pcm, dtype="<i2").astype(np.float32) / 32768
+        self.wave = np.frombuffer(pcm,dtype="<i2").astype(np.float32)/32768
 
     def speak(self, t):
-        index = round(t * self.rate)
-        radius = round(.022 * self.rate)
-        chunk = self.wave[max(0, index - radius):index + radius + 1]
+        index = round(t*self.rate)
+        r = round(.023*self.rate)
+        chunk = self.wave[max(0,index-r):index+r+1]
         if not chunk.size:
             return 0
-        energy = np.sqrt(np.mean(chunk * chunk))
-        if energy < .011:
+        energy = np.sqrt(np.mean(chunk*chunk))
+        if energy < .010:
             return 0
-        return 1 + int(energy > .054) + int(energy > .128)
+        return 1 + int(energy > .036) + int(energy > .080)
 
-    def draw(self, image, t, x, y, width, energy=1, tilt=0, opacity=1,
-             state=None, smile=False, still=False):
-        tick = math.floor(t * 15) / 15
-        wing = NEUTRAL_WING if still else round(2 + 2 * math.sin(tick * math.tau * 4.0))
-        blink = not still and ((t + .37) % 3.62) < .115
-        state = pulse_frame(t) if state is None else state
-        sprite = avatar_pose(state, wing, 4 if smile else self.speak(tick), blink)
-        width = round(width * (1 + energy * .016 * math.sin(t * 3.4)))
-        # The new artwork is taller. Preserve the old silhouette height and
-        # register the eye midpoint in the same region of the portrait.
-        height = round(width * 640 / 580)
-        sprite = sprite.resize((round(height * sprite.width / sprite.height), height), NEAREST)
-        rotation = tilt + energy * (4.2 * math.sin(t * 2.62) + 1.5 * math.sin(t * 6))
-        if abs(rotation) > .1:
-            sprite = sprite.rotate(rotation, NEAREST, expand=True)
-        place(image, sprite, (x + energy * 19 * math.sin(t * 2.6),
-                              y + energy * 25 * math.sin(t * 3.5)), opacity=opacity)
+    def draw(self, image, t, x, y, width, energy=1, tilt=0, opacity=1):
+        tick = math.floor(t*15)/15
+        wing = round(2+2*math.sin(tick*math.tau*4.0))
+        blink = ((t+.37)%3.62) < .13 or 1.11 < t < 1.23 or 3.66 < t < 3.79
+        sprite = avatar_pose(wing,self.speak(tick),blink)
+        width = round(width*(1+.026*math.sin(t*3.4)))
+        sprite = sprite.resize((width,round(width*640/580)),NEAREST)
+        rotation = round(tilt+energy*(5.0*math.sin(t*2.62)+1.9*math.sin(t*6)),1)
+        sprite = sprite.rotate(rotation,NEAREST,expand=True)
+        place(image,sprite,(x+energy*24*math.sin(t*2.6),y+energy*31*math.sin(t*3.5)),opacity=opacity)
+
 
 def rounded(draw, box, radius, fill, outline=None, width=1):
     draw.rounded_rectangle(box, radius, fill=fill, outline=outline, width=width)
@@ -412,4 +355,3 @@ def crt_art():
     d.ellipse((811,697,818,703),fill="#e0ffa6")
     d.line((878,102,890,688),fill="#765964",width=7)
     return im
-
