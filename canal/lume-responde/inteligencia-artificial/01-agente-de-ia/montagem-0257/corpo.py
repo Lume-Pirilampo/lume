@@ -92,9 +92,9 @@ def expressao(base, boca, pisca_olhos, sorriso):
     if pisca_olhos:
         draw=ImageDraw.Draw(im)
         for region,color,stroke in [
-            ([(236,238),(242,219),(256,208),(274,204),(293,209),(304,222),
-              (309,240),(305,254),(293,267),(257,271),(245,264),(235,254)],
-             (102,51,111),[(239,244),(247,249),(255,252),(269,254),(284,252),(300,244)]),
+            ([(236,230),(242,211),(256,200),(274,196),(293,201),(304,214),
+              (309,232),(305,246),(293,259),(257,263),(245,256),(235,246)],
+             (102,51,111),[(239,236),(247,241),(255,244),(269,246),(284,244),(300,236)]),
             ([(330,216),(332,199),(340,191),(354,189),(368,198),(376,217),
               (377,237),(370,247),(349,253),(336,246),(329,231)],
              (108,53,114),[(332,223),(339,228),(350,230),(361,227),(373,219)])]:
@@ -120,7 +120,7 @@ def sprite_512(estado, asa=2, boca=0, pisca_olhos=False, sorriso=0.0):
     base,_=partes(estado)
     layer=_asas(asa).copy()
     layer.alpha_composite(expressao(base,boca,pisca_olhos,sorriso))
-    # Eyes (approx. 273,236 and 351,220) register to the eye line on the
+    # Eyes (approx. 273,228 and 351,220) register to the eye line on the
     # episode's 580x640 articulated rig. Keep the new aspect ratio intact.
     canonical=Image.new("RGBA",(580,640))
     art=layer.crop((51,14,455,486))
