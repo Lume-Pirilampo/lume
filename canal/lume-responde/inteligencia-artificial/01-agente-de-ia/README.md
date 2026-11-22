@@ -28,3 +28,11 @@ LUME_FONT=/caminho/KnockIT_Display_Research_v0.15.ttf python3 canal/lume-respond
 A pasta [montagem-0257](montagem-0257/) contém o corte entregue, a base visual, a tomada integral, a trilha C, os efeitos e o código dessa revisão. O ajuste de tempo deste corte pode repetir quadros.
 
 Para reproduzir esta versão a partir de um clone do repositório, instale NumPy e Pillow no Python e disponibilize FFmpeg com libx264 no PATH. Dentro de montagem-0257, execute **python compose.py**. A saída é Lume-Responde-01-remontado.mp4.
+
+## Montagem v8 com a locução de 03h16
+
+O [corte v8 remontado](Lume-Responde-01-v8.mp4) usa a composição visual de 02h57, a trilha C e os efeitos da montagem de referência. A pasta [montagem-0316](montagem-0316/) guarda a locução, as marcas de tempo e o código de reexportação.
+
+## v9 para revisão
+
+O [corte v9](Lume-Responde-01-v9.mp4) revisa as legendas, a cartela, os vaga-lumes e a animação no convite. A [montagem editável](revisao-09/) contém os novos tempos das legendas e as instruções para reexportar.
