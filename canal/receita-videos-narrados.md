@@ -6,6 +6,8 @@ A [abertura do canal](apresentacao/README.md) é a referência de voz, legenda, 
 
 A [especificação de produção em JSON](lume-responde.receita.json) reúne as entradas, as etapas e os critérios de revisão da série.
 
+> **Importante (Arquitetura da Engine):** antes de alterar ou criar código de renderização, leia o [post-mortem do Ep. 1 e as regras da engine](arquitetura-engine.md) — é proibido editar/remendar MP4 pronto ou acoplar regras específicas de um episódio no motor compartilhado.
+
 ### Fluxo de trabalho
 
 **Trabalhe por etapas, uma entrega de cada vez.** Revise e feche o texto antes de montar o storyboard. Revise e feche o storyboard estático antes de desenhar ou explicar os efeitos visuais. Com a voz montada, use os tempos reais da fala pra fechar a sincronização.
