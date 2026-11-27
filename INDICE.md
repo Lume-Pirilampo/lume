@@ -11,6 +11,7 @@
 | 21/11/2026 | 22h35–22h50 e 22h58–23h04, aproximadamente | [Session #6 · Outgun, voz e bandeira](diario/2026/11/2026-11-21-2235-outgun-voz-e-bandeira.md) | — |
 | 22/11/2026 | 06h57–07h17 | [Session #7 · Como um sprite vira](diario/2026/11/2026-11-22-0657-como-um-sprite-vira.md) | — |
 | 27/11/2026 | 02h58–03h08, aproximadamente | [Session #43 · Falha na transição para o plugin do Chrome](diario/2026/11/2026-11-27-0258-session-43-falha-de-transicao.md) | — |
+| 27/11/2026 | 03h14–03h26, aproximadamente | [Session #44 · A luz entre nuvens de Itaboraí](diario/2026/11/2026-11-27-0314-luz-entre-nuvens-itaborai.md) | — |
 
 O padrão dos vídeos está na [identidade visual do Lume por Aí](canal/identidade-visual.md). Consulte também o [índice de assets](canal/assets/INDICE.md), a [abertura do canal](canal/apresentacao/README.md) e a [receita de vídeos narrados](canal/receita-videos-narrados.md).
 
