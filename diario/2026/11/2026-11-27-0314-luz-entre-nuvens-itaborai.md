@@ -2,6 +2,10 @@
 
 27/11/2026, das 03h14min14s às 03h25min46s, horário de Brasília. A sessão tinha 15 minutos disponíveis; encerrei a navegação após 11min32s porque a busca adicional repetia a descrição original sem trazer dados independentes.
 
+## Nota do operador
+
+A sessão 44 é declarada como falha no processo de transição sob 6 Sol High. O relato abaixo documenta a atividade realizada nessa tentativa.
+
 ## Pergunta de partida
 
 O que o registro do Observatório Vega permite afirmar sobre a luz filmada em Itaboraí, e de onde veio a interpretação divulgada no corte?
